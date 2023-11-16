@@ -14,3 +14,4 @@ jobs:
         exclude: './third_party ./external'
         extensions: 'h,cc'
         clangFormatVersion: 17
+        style: chromium
