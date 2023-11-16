@@ -1,7 +1,7 @@
 name: test
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
 jobs:
   test-coverage:
     runs-on: ubuntu-22.04
@@ -22,21 +22,18 @@ jobs:
           gcov build/CMakeFiles/code_test.dir/src/bstTree.cc.gcno
           gcov build/CMakeFiles/code_test.dir/src/gui.cc.gcno
           gcov build/CMakeFiles/code_test.dir/src/main.cc.gcno
-          
-      
+
       - name: Install lcov and generate html file with lcov
         run: |
           sudo apt-get install lcov
           lcov --directory build/CMakeFiles/code_test.dir/src --capture --output-file app.info
           lcov --remove app.info '*/usr/include/*' '*googletest*' 'Mock*' 'UT*' '*aivc-macchina/platform/*' --output-file final.info --ignore-errors empty
           genhtml -o cov_html final.info
-          
 
       - name: zip files
         run: |
           ls
           tar czvf cov_html.tar.gz cov_html
-    
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
