@@ -42,10 +42,11 @@ jobs:
         with:
           name: code-coverage-report
           path: cov_html.tar.gz
-          
-      - name: print variable
-        run: | 
-          cat build/test_output.txt
+
+      - name: PR comment with file
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: build/test_output.txt
           
       - uses: codecov/codecov-action@v3
         with:
