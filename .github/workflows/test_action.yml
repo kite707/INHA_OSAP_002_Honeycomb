@@ -15,7 +15,8 @@ jobs:
           cmake .. -DCMAKE_BUILD_TYPE=PROFILE $SRC_DIR
           make VERBOSE=1
           ./tree_test
-          ./tree_test >> "$TEST_RES"
+          ./tree_test | tee test_output.txt
+          ls
 
       - name: Analyze the result of GoogleTest with gcov
         run: |
@@ -44,7 +45,7 @@ jobs:
           
       - name: print variable
         run: | 
-          echo $TEST_RES
+          cat build/test_output.txt
           
       - uses: codecov/codecov-action@v3
         with:
