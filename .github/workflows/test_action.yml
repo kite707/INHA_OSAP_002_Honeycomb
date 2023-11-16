@@ -1,7 +1,6 @@
 name: test
 on:
-  pull_request:
-    branches: [main]
+  push:
 jobs:
   test-coverage:
     runs-on: ubuntu-22.04
@@ -45,7 +44,7 @@ jobs:
       #   with:
       #     excludes: |
       #       build/*
-      - uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          gcov: true
+      # - uses: codecov/codecov-action@v3
+      #   with:
+      #     token: ${{ secrets.CODECOV_TOKEN }}
+      #     gcov: true
