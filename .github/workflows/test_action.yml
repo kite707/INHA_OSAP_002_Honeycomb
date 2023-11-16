@@ -15,8 +15,12 @@ jobs:
           cmake .. -DCMAKE_BUILD_TYPE=PROFILE $SRC_DIR
           make VERBOSE=1
           ./tree_test
+
+      - name: Save test result to text file
+        if: always()
+        run: |
+          cd build
           ./tree_test | tee test_output.txt
-          ls
 
       - name: Analyze the result of GoogleTest with gcov
         run: |
