@@ -17,15 +17,15 @@ jobs:
 
       - name: Analyze the result of GoogleTest with gcov
         run: |
-          gcov build/CMakeFiles/code_test.dir/src/avlTree.cc.gcno
-          gcov build/CMakeFiles/code_test.dir/src/bstTree.cc.gcno
-          gcov build/CMakeFiles/code_test.dir/src/gui.cc.gcno
-          gcov build/CMakeFiles/code_test.dir/src/main.cc.gcno
+          gcov build/CMakeFiles/tree_test.dir/src/avlTree.cc.gcno
+          gcov build/CMakeFiles/tree_test.dir/src/bstTree.cc.gcno
+          gcov build/CMakeFiles/tree_test.dir/src/gui.cc.gcno
+          gcov build/CMakeFiles/tree_test.dir/src/main.cc.gcno
 
       - name: Install lcov and generate html file with lcov
         run: |
           sudo apt-get install lcov
-          lcov --directory build/CMakeFiles/code_test.dir/src --capture --output-file app.info
+          lcov --directory build/CMakeFiles/tree_test.dir/src --capture --output-file app.info
           lcov --remove app.info '*/usr/include/*' '*googletest*' 'Mock*' 'UT*' '*aivc-macchina/platform/*' --output-file final.info --ignore-errors empty
           genhtml -o cov_html final.info
 
