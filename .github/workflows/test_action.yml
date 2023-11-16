@@ -1,7 +1,6 @@
 name: test
 on:
-  pull_request:
-    branches: [ main ]
+  push:
 jobs:
   test-coverage:
     runs-on: ubuntu-22.04
