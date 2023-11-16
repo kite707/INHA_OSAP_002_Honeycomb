@@ -1,5 +1,6 @@
 name: test
 on:
+  push:
   pull_request:
 jobs:
   test-coverage:
@@ -14,6 +15,7 @@ jobs:
           cmake .. -DCMAKE_BUILD_TYPE=PROFILE $SRC_DIR
           make VERBOSE=1
           ./tree_test
+          ./tree_test >> "$TEST_RES"
 
       - name: Analyze the result of GoogleTest with gcov
         run: |
@@ -39,6 +41,10 @@ jobs:
         with:
           name: code-coverage-report
           path: cov_html.tar.gz
+          
+      - name: print variable
+        run: | 
+          echo $TEST_RES
           
       - uses: codecov/codecov-action@v3
         with:
