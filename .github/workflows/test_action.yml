@@ -44,6 +44,7 @@ jobs:
           path: cov_html.tar.gz
 
       - name: PR comment with file
+        if: always()
         uses: thollander/actions-comment-pull-request@v2
         with:
           filePath: build/test_output.txt
