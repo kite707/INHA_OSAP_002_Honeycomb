@@ -7,4 +7,6 @@ int multiple(int a, int b) {
 
 /* »ý¼ºÀÚ */
 template <typename T>
-BinarySearchTree<T>::BinarySearchTree() {}
+BinarySearchTree<T>::BinarySearchTree() {
+    root = nullptr;
+}
