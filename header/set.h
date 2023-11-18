@@ -1,4 +1,4 @@
-#ifndef GUI_H_
-#define GUI_H_
+#ifndef SET_H_
+#define SET_H_
 int sub(int a, int b);
 #endif
