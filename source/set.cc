@@ -1,4 +1,4 @@
-#include "../header/gui.h"
+#include "../header/set.h"
 
 using namespace std;
 int sub(int a, int b) {
