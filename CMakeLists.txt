@@ -23,11 +23,11 @@ add_executable(
   tree_test
   test/avlTreeTest.cc
   test/bstTreeTest.cc
-  test/guiTest.cc
+  test/setTest.cc
   test/mainTest.cc
   source/avlTree.cc
   source/bstTree.cc
-  source/gui.cc
+  source/set.cc
   source/main.cc
 )
 target_link_libraries(
