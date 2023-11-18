@@ -1,11 +1,12 @@
 #include "../header/bstTree.h"
+
 using namespace std;
 
-// 스켈레톤 코드
+// test
 int multiple(int a, int b) {
 	return a * b;
 }
 
-/* 생성자 */
+/* constructor */
 template <typename T>
-BinarySearchTree<T>::BinarySearchTree() {}
+BinarySearchTree<T>::BinarySearchTree(){};
