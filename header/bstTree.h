@@ -1,9 +1,9 @@
 #ifndef BSTTREE_H_
 #define BSTTREE_H_
 
-int multiple(int a, int b); // 스켈레톤 코드
+int multiple(int a, int b); // test
 
-/* Node 구조체 */
+/* Node struct */
 template <typename T>
 struct Node {
   T key;
@@ -12,12 +12,12 @@ struct Node {
   int height;
 };
 
-/* BST 클래스 */
+/* BST Class */
 template <typename T>
 class BinarySearchTree {
  public:
   BinarySearchTree();
-  // 멤버 함수 구현 필요
+  // member func...
  private:
   typedef Node<T>* NodePtr;
   NodePtr root;
