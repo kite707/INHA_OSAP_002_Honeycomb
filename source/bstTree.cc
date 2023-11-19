@@ -1,6 +1,7 @@
-#include "../header/bstTree.h"
+﻿#include "../header/bstTree.h"
 
 using namespace std;
-int multiple(int a, int b) {
-  return a * b;
-}
+
+/* constructor */
+template <typename T>
+BinarySearchTree<T>::BinarySearchTree(){};
