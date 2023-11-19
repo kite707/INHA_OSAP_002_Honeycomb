@@ -1,8 +1,8 @@
-#include "../header/bstTree.h"
+﻿#include "../header/bstTree.h"
 
 using namespace std;
 
-// test
+// 테스트
 int multiple(int a, int b) {
   return a * b;
 }
