@@ -13,11 +13,12 @@ struct Node {
 /* BST Class */
 template <typename T>
 class BinarySearchTree {
- public:
+public:
   BinarySearchTree();
   // member func...
- private:
+private:
   typedef Node<T>* NodePtr;
   NodePtr root;
 };
+
 #endif  // BSTTREE_H_
