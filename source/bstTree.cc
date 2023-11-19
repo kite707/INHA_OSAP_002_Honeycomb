@@ -1,12 +1,7 @@
-ï»¿#include "../header/bstTree.h"
+#include "../header/bstTree.h"
 
 using namespace std;
 
-// í…ŒìŠ¤íŠ¸
-int multiple(int a, int b) {
-  return a * b;
-}
-
-/* constructor */
+/* »ı¼ºÀÚ */
 template <typename T>
 BinarySearchTree<T>::BinarySearchTree(){};
