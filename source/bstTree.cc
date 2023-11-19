@@ -2,6 +2,6 @@
 
 using namespace std;
 
-/* »ý¼ºÀÚ */
+/* constructor */
 template <typename T>
 BinarySearchTree<T>::BinarySearchTree(){};
