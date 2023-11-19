@@ -1,7 +1,5 @@
-#ifndef BSTTREE_H_
+﻿#ifndef BSTTREE_H_
 #define BSTTREE_H_
-
-int multiple(int a, int b);  // test..
 
 /* Node struct */
 template <typename T>
