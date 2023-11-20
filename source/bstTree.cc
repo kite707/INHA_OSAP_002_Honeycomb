@@ -30,10 +30,10 @@ int BinarySearchTree<T>::findDepthByValue(int item) {
   NodePtr t = root;
   int depth = 0;
 
-  /* key값을 찾거나 없다면 break */
   while (t != nullptr && t->key != item) {
     t = (item < t->key) ? t->left : t->right;
     depth++;
   }
+
   return depth;
 }
