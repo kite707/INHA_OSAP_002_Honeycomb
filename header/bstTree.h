@@ -19,6 +19,7 @@ class BinarySearchTree {
   int getSize();
   void addSize();
   bool isEmpty();
+  int findDepthByValue(int item);
 
  private:
   typedef Node<T>* NodePtr;
