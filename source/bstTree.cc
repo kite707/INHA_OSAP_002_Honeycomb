@@ -23,8 +23,21 @@ bool BinarySearchTree<T>::isEmpty() {
 }
 
 template <typename T>
+bool BinarySearchTree<T>::IsKey(int item) {
+  NodePtr t = root;
+  if (isEmpty()) {
+    return false;
+  } else {
+    while (t != nullptr && t->key != item) {
+      t = (item < t->key) ? t->left : t->right;
+    }
+    return true;
+  }
+}
+
+template <typename T>
 int BinarySearchTree<T>::findDepthByValue(int item) {
-  if (IsKey(item) == nullptr) {
+  if (!IsKey(item)) {
     return 0;
   }
   NodePtr t = root;
