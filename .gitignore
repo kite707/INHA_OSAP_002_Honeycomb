@@ -1,1 +1,5 @@
 /build
+.vscode
+.idea
+/source/main.out.dSYM
+/source/main.out
