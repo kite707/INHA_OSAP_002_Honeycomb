@@ -18,6 +18,7 @@ class BinarySearchTree {
   // member func...
   int getSize();
   void addSize();
+  bool isEmpty();
 
  private:
   typedef Node<T>* NodePtr;
