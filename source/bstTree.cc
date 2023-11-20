@@ -8,12 +8,12 @@ BinarySearchTree<T>::BinarySearchTree() {}
 
 /* class member func */
 template <typename T>
-int BinarySearchTree<T>::getSize() {
+int BinarySearchTree<T>::get_size() {
   return size;
 }
 
 template <typename T>
-void BinarySearchTree<T>::addSize() {
+void BinarySearchTree<T>::set_size_plus() {
   this->size += 1;
 }
 
@@ -50,3 +50,5 @@ int BinarySearchTree<T>::findDepthByValue(int item) {
 
   return depth;
 }
+
+int main() {}

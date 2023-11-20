@@ -16,16 +16,16 @@ class BinarySearchTree {
  public:
   BinarySearchTree();
   // member func...
-  int getSize();
-  void addSize();
+  int get_size();
+  void set_size_plus();
   bool isEmpty();
   bool IsKey(int item);
   int findDepthByValue(int item);
 
  private:
   typedef Node<T>* NodePtr;
-  NodePtr root;
-  int size;
+  NodePtr root_;
+  int size_;
 };
 
 #endif  // BSTTREE_H_
