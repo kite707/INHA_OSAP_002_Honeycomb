@@ -9,25 +9,25 @@ BinarySearchTree<T>::BinarySearchTree() {}
 /* Return size of BST */
 template <typename T>
 int BinarySearchTree<T>::get_size() {
-  return size;
+  return size_;
 }
 
 /* Increase size of BST */
 template <typename T>
 void BinarySearchTree<T>::set_size_plus() {
-  this->size += 1;
+  this->size_ += 1;
 }
 
 /* Return true if BST is empty */
 template <typename T>
 bool BinarySearchTree<T>::isEmpty() {
-  return root == nullptr;
+  return root_ == nullptr;
 }
 
 /* Return true if any node has item as key value */
 template <typename T>
 bool BinarySearchTree<T>::IsKey(int item) {
-  NodePtr t = root;
+  NodePtr t = root_;
   if (isEmpty()) {
     return false;
   } else {
@@ -44,7 +44,7 @@ int BinarySearchTree<T>::findDepthByValue(int item) {
   if (!IsKey(item)) {
     return 0;
   }
-  NodePtr t = root;
+  NodePtr t = root_;
   int depth = 0;
 
   // Break if key value is found or not found
