@@ -15,16 +15,19 @@ template <typename T>
 class BinarySearchTree {
  public:
   BinarySearchTree();
-  // member func...
   int get_size();
   void set_size_plus();
   bool isEmpty();
   bool IsKey(int item);
   int findDepthByValue(int item);
+  // + Implementation required...
 
  private:
+  // data member of node pointer
   typedef Node<T>* NodePtr;
+  // pointer of root node
   NodePtr root_;
+  // total size of BST
   int size_;
 };
 
