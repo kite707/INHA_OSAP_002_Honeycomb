@@ -27,7 +27,7 @@ bool BinarySearchTree<T>::isEmpty() {
 /* Return true if any node has item as key value */
 template <typename T>
 bool BinarySearchTree<T>::IsKey(int item) {
-  NodePtr<T> t = root_;
+  NodePtr<T> t = this->root_;
   if (isEmpty()) {
     return false;
   } else {
