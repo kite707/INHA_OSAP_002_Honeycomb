@@ -21,12 +21,12 @@ enable_testing()
 
 add_executable(
   tree_test
-  test/avlTreeTest.cc
-  test/bstTreeTest.cc
-  test/setTest.cc
-  test/mainTest.cc
-  source/avlTree.cc
-  source/bstTree.cc
+  test/avl_tree_test.cc
+  test/bst_tree_test.cc
+  test/set_test.cc
+  test/main_test.cc
+  source/avl_tree.cc
+  source/bst_tree.cc
   source/set.cc
   source/main.cc
 )
