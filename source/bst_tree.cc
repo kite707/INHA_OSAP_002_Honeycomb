@@ -5,7 +5,7 @@ using namespace std;
 
 /* Constructor */
 template <typename T>
-BinarySearchTree<T>::BinarySearchTree() : root_(nullptr), size_(0){}
+BinarySearchTree<T>::BinarySearchTree() : root_(nullptr), size_(0){};
 
 /* Return size of BST */
 template <typename T>
