@@ -1,26 +1,42 @@
 #include <gtest/gtest.h>
 #include <iostream>
 #include "../header/bstTree.h"
-#include "../source/bstTree.cc"
 using namespace testing;
 using namespace std;
 
 // Fixture Class
 template <typename T>
 class BinarySearchTreeTest : public Test {
+ public:
+  BinarySearchTreeTest();
+  virtual ~BinarySearchTreeTest();
+  void SetUp() override;
+  void TearDown() override;
+
  protected:
-  void SetUp() override {
-    // Init for testing
-  }
-
-  void TearDown() override {
-    // Clean up
-  }
-
-  BinarySearchTree<T> bst;  // BST object
+  BinarySearchTree<T> bst_;  // BST obj member
 };
 
-/*
-TEST(BST, bstTree_Test) {
-  EXPECT_EQ(8, test(4, 2));
-*/
+/* Constructor */
+template <typename T>
+BinarySearchTreeTest<T>::BinarySearchTreeTest() {
+  cout << "Constructor called\n";
+}
+
+/* Destructor */
+template <typename T>
+BinarySearchTreeTest<T>::~BinarySearchTreeTest() {
+  cout << "Destructor called\n";
+}
+
+/* SetUp */
+template <typename T>
+void BinarySearchTreeTest<T>::SetUp() {
+  cout << "SetUp called\n";
+}
+
+/* TearDown */
+template <typename T>
+void BinarySearchTreeTest<T>::TearDown() {
+  cout << "TearDown called\n";
+}
