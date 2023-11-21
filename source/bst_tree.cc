@@ -4,7 +4,7 @@ using namespace std;
 
 /* Constructor */
 template <typename T>
-BinarySearchTree<T>::BinarySearchTree() {}
+BinarySearchTree<T>::BinarySearchTree() : root_(nullptr) {}
 
 /* Return size of BST */
 template <typename T>
@@ -27,7 +27,7 @@ bool BinarySearchTree<T>::isEmpty() {
 /* Return true if any node has item as key value */
 template <typename T>
 bool BinarySearchTree<T>::IsKey(int item) {
-  NodePtr t = root_;
+  NodePtr<T> t = root_;
   if (isEmpty()) {
     return false;
   } else {
@@ -44,7 +44,7 @@ int BinarySearchTree<T>::findDepthByValue(int item) {
   if (!IsKey(item)) {
     return 0;
   }
-  NodePtr t = root_;
+  NodePtr<int> t = root_;
   int depth = 0;
 
   // Break if key value is found or not found

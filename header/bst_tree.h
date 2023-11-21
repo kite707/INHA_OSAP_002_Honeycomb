@@ -10,6 +10,9 @@ struct Node {
   int height;
 };
 
+template <typename T>
+using NodePtr = Node<T>*;
+
 /* BST Class */
 template <typename T>
 class BinarySearchTree {
@@ -24,9 +27,9 @@ class BinarySearchTree {
 
  private:
   // data member of node pointer
-  typedef Node<T>* NodePtr;
+
   // pointer of root node
-  NodePtr root_;
+  NodePtr<T> root_;
   // total size of BST
   int size_;
 };
