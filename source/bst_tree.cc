@@ -1,4 +1,5 @@
 ﻿#include "../header/bst_tree.h"
+#include <iostream>
 
 using namespace std;
 
@@ -76,8 +77,4 @@ void BinarySearchTree<T>::maximum(int item) {
     x = x->right;
   }
   cout << x->key << " " << findDepthByValue(x->key) << "\n";
-}
-
-int main() {
-
 }
