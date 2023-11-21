@@ -15,8 +15,8 @@ template <typename T>
 class BinarySearchTree {
  public:
   BinarySearchTree();
-  int get_size();
-  void set_size_plus();
+  int getSize();
+  void addSize();
   bool isEmpty();
   bool IsKey(int item);
   int findDepthByValue(int item);

@@ -8,13 +8,13 @@ BinarySearchTree<T>::BinarySearchTree() {}
 
 /* Return size of BST */
 template <typename T>
-int BinarySearchTree<T>::get_size() {
+int BinarySearchTree<T>::getSize() {
   return size_;
 }
 
 /* Increase size of BST */
 template <typename T>
-void BinarySearchTree<T>::set_size_plus() {
+void BinarySearchTree<T>::addSize() {
   this->size_ += 1;
 }
 
