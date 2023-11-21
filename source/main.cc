@@ -10,7 +10,4 @@ int main() {
   Node<int>* root = nullptr;
   root = avl.Insert(root, 42);
   cout << root->key << endl;
-
-  //  bst.inheritTest();
-  // cout << tttt() << endl;
 }
