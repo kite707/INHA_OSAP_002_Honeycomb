@@ -20,6 +20,8 @@ class BinarySearchTree {
   bool isEmpty();
   bool IsKey(int item);
   int findDepthByValue(int item);
+  void minimum(int item);
+  void maximum(int item);
   // + Implementation required...
 
  private:

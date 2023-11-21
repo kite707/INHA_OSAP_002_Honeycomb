@@ -1,4 +1,5 @@
 ﻿#include "../header/bst_tree.h"
+#include <iostream>
 
 using namespace std;
 
@@ -54,4 +55,26 @@ int BinarySearchTree<T>::findDepthByValue(int item) {
   }
 
   return depth;
+}
+
+/* find min */
+template <typename T>
+void BinarySearchTree<T>::minimum(int item) {
+  typedef Node<T>* NodePtr;
+  NodePtr x = IsKey(item);
+  while (x->left != nullptr) {
+    x = x->left;
+  }
+  cout << x->key << " " << findDepthByValue(x->key) << "\n";
+}
+
+/* find max */
+template <typename T>
+void BinarySearchTree<T>::maximum(int item) {
+  typedef Node<T>* NodePtr;
+  NodePtr x = IsKey(item);
+  while (x->right != nullptr) {
+    x = x->right;
+  }
+  cout << x->key << " " << findDepthByValue(x->key) << "\n";
 }
