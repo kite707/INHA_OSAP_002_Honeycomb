@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <iostream>
-#include "../header/bstTree.h"
+#include "../header/bst_tree.h"
 using namespace testing;
 using namespace std;
 
