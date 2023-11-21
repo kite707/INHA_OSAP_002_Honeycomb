@@ -52,9 +52,5 @@ jobs:
         with:
           filePath: build/test_output.txt
           
-      - uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          gcov: true
 
 
