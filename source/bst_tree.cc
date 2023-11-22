@@ -29,16 +29,14 @@ bool BinarySearchTree<T>::isEmpty() {
 
 /* Return true if any node has item as key value */
 template <typename T>
-bool BinarySearchTree<T>::IsKey(int item) {
+NodePtr<T> BinarySearchTree<T>::IsKey(int item) {
   NodePtr<T> t = this->root_;
-  if (isEmpty()) {
-    return false;
-  } else {
-    while (t != nullptr && t->key != item) {
-      t = (item < t->key) ? t->left : t->right;
-    }
-    return true;
+
+  /*key값을 찾거나 없다면 break*/
+  while (t != nullptr && t->key != item) {
+    t = (item < t->key) ? t->left : t->right;
   }
+  return t;
 }
 
 /* Return depth of the node with item as key */
@@ -47,15 +45,14 @@ int BinarySearchTree<T>::findDepthByValue(int item) {
   if (!IsKey(item)) {
     return 0;
   }
-  NodePtr<int> t = this->root_;
+  NodePtr<T> t = this->root_;
   int depth = 0;
 
-  // Break if key value is found or not found
+  /*key값을 찾거나 없다면 break*/
   while (t != nullptr && t->key != item) {
     t = (item < t->key) ? t->left : t->right;
     depth++;
   }
-
   return depth;
 }
 
