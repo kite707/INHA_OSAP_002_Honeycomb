@@ -3,12 +3,12 @@
 
 /* Node struct */
 template <typename T>
-struct Node {
+struct Node {  // clang format apply
   T key;
   Node* left = nullptr;
   Node* right = nullptr;
   int height = 1;
-};  // clang format apply
+};
 
 template <typename T>
 using NodePtr = Node<T>*;
