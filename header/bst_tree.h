@@ -3,6 +3,9 @@
 
 /* Node struct */
 template <typename T>
+using NodePtr = Node<T>*;
+
+template <typename T>
 struct Node {
   T key;
   Node* left = nullptr;
@@ -13,27 +16,27 @@ struct Node {
 /* BST Class */
 template <typename T>
 class BinarySearchTree {
-  // data member of node pointer
-
- private:
-  typedef Node<T>* NodePtr;
-  // pointer of root node
-  NodePtr root_;
-  // total size of BST
-  int size_;
-
  public:
   BinarySearchTree();
-  bool IsKey(int item);
-  NodePtr insert(NodePtr node, int item);
-  void Insert_helper(int item);
-  int findDepthByValue(int item);
-  bool isEmpty();
   int getSize();
-  NodePtr getRoot();
-
   void addSize();
-  /*NodePtr erase(NodePtr node, int item);*/
+  bool isEmpty();
+  bool IsKey(int item);
+  int findDepthByValue(int item);
+  void minimum(int item);
+  void maximum(int item);
+  NodePtr<T> getRoot();
+  void Insert_helper(int item);
+  NodePtr<T> insert(NodePtr node, int item);
+  // + Implementation required...
+
+ private:
+  // data member of node pointer
+
+  // pointer of root node
+  NodePtr<T> root_;
+  // total size of BST
+  int size_;
 };
 
 #endif  // BSTTREE_H_

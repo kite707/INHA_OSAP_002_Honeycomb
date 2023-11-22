@@ -1,15 +1,18 @@
 ﻿#include "../header/bst_tree.h"
+#include <iostream>
 
 using namespace std;
 
 /* Constructor */
 template <typename T>
-BinarySearchTree<T>::BinarySearchTree() {}
+BinarySearchTree<T>::BinarySearchTree()
+    : this->root_(nullptr),
+this->size_(0) {}
 
 /* Return size of BST */
 template <typename T>
 int BinarySearchTree<T>::getSize() {
-  return size_;
+  return this->size_;
 }
 
 /* Increase size of BST */
@@ -21,13 +24,13 @@ void BinarySearchTree<T>::addSize() {
 /* Return true if BST is empty */
 template <typename T>
 bool BinarySearchTree<T>::isEmpty() {
-  return root_ == nullptr;
+  return this->root_ == nullptr;
 }
 
 /* Return true if any node has item as key value */
 template <typename T>
 bool BinarySearchTree<T>::IsKey(int item) {
-  NodePtr t = root_;
+  NodePtr<T> t = this->root_;
   if (isEmpty()) {
     return false;
   } else {
@@ -44,7 +47,7 @@ int BinarySearchTree<T>::findDepthByValue(int item) {
   if (!IsKey(item)) {
     return 0;
   }
-  NodePtr t = root_;
+  NodePtr<int> t = this->root_;
   int depth = 0;
 
   // Break if key value is found or not found
@@ -54,4 +57,24 @@ int BinarySearchTree<T>::findDepthByValue(int item) {
   }
 
   return depth;
+}
+
+/* find min */
+template <typename T>
+void BinarySearchTree<T>::minimum(int item) {
+  NodePtr<int> x = IsKey(item);
+  while (x->left != nullptr) {
+    x = x->left;
+  }
+  cout << x->key << " " << findDepthByValue(x->key) << "\n";
+}
+
+/* find max */
+template <typename T>
+void BinarySearchTree<T>::maximum(int item) {
+  NodePtr<int> x = IsKey(item);
+  while (x->right != nullptr) {
+    x = x->right;
+  }
+  cout << x->key << " " << findDepthByValue(x->key) << "\n";
 }

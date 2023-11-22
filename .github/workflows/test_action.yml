@@ -23,9 +23,9 @@ jobs:
 
       - name: Analyze the result of GoogleTest with gcov
         run: |
-          gcov build/CMakeFiles/tree_test.dir/source/avlTree.cc.gcno
-          gcov build/CMakeFiles/tree_test.dir/source/bstTree.cc.gcno
-          gcov build/CMakeFiles/tree_test.dir/source/gui.cc.gcno
+          gcov build/CMakeFiles/tree_test.dir/source/avl_tree.cc.gcno
+          gcov build/CMakeFiles/tree_test.dir/source/bst_tree.cc.gcno
+          gcov build/CMakeFiles/tree_test.dir/source/set.cc.gcno
           gcov build/CMakeFiles/tree_test.dir/source/main.cc.gcno
 
       - name: Install lcov and generate html file with lcov
@@ -52,9 +52,5 @@ jobs:
         with:
           filePath: build/test_output.txt
           
-      - uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          gcov: true
 
 
