@@ -78,3 +78,9 @@ void BinarySearchTree<T>::maximum(int item) {
   }
   cout << x->key << " " << findDepthByValue(x->key) << "\n";
 }
+
+/* Return a root of tree*/
+template <typename T>
+NodePtr<T> BinarySearchTree<T>::getRoot() {
+  return this->root_;
+}
