@@ -24,7 +24,7 @@ class BinarySearchTree {
 
  public:
   BinarySearchTree();
-  NodePtr IsKey(int item);
+  bool IsKey(int item);
   NodePtr insert(NodePtr node, int item);
   void Insert_helper(int item);
   int findDepthByValue(int item);
