@@ -6,8 +6,28 @@
 using namespace std;
 
 int main() {
-  AVLTree<int> avl;
+  /*AVLTree<int> avl;
   Node<int>* root = nullptr;
   root = avl.Insert(root, 42);
-  cout << root->key << endl;
+  cout << root->key << endl;*/
+
+  int t;
+  cin >> t;
+  while (t--) {
+    int Q;
+    cin >> Q;
+    string s;
+    int n;
+    BinarySearchTree<int> tree;
+    for (int i = 0; i < Q; ++i) {
+      cin >> s;
+      if (s == "insert") {
+        cin >> n;
+        tree.Insert_helper(n);
+        cout << tree.findDepthByValue(n) << '\n';
+      }
+    }
+  }
+
+  return;
 }
