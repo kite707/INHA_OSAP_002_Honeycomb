@@ -100,3 +100,15 @@ NodePtr<T> BinarySearchTree<T>::insert(NodePtr<T> node, int item) {
   }
   return node;
 }
+
+/* insert helper function to use in main.cc*/
+template <typename T>
+void BinarySearchTree<T>::Insert_helper(int item) {
+  if (IsKey(item)) {
+    cout << item << " is already exists\n";
+    return;
+  }
+  this->root_ = insert(this->root_, item);
+  this->size_ = this->size_ + 1;
+  return;
+}
