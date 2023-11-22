@@ -84,3 +84,19 @@ template <typename T>
 NodePtr<T> BinarySearchTree<T>::getRoot() {
   return this->root_;
 }
+
+/* insert a node in bst tree*/
+template <typename T>
+NodePtr<T> BinarySearchTree<T>::insert(NodePtr<T> node, int item) {
+  if (node == nullptr) {
+    NodePtr<T> z = new Node<T>;
+    z->key = item;
+    node = z;
+    return node;
+  } else if (node->key < item) {
+    node->right = insert(node->right, item);
+  } else {
+    node->left = insert(node->left, item);
+  }
+  return node;
+}
