@@ -3,7 +3,7 @@
 
 /* Node struct */
 template <typename T>
-struct Node {
+struct Node {  // clang format apply
   T key;
   Node* left = nullptr;
   Node* right = nullptr;

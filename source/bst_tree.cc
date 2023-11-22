@@ -57,7 +57,7 @@ int BinarySearchTree<T>::findDepthByValue(int item) {
 /* find min */
 template <typename T>
 void BinarySearchTree<T>::minimum(int item) {
-  NodePtr<int> x = IsKey(item);
+  NodePtr<T> x = IsKey(item);
   while (x->left != nullptr) {
     x = x->left;
   }
@@ -67,7 +67,7 @@ void BinarySearchTree<T>::minimum(int item) {
 /* find max */
 template <typename T>
 void BinarySearchTree<T>::maximum(int item) {
-  NodePtr<int> x = IsKey(item);
+  NodePtr<T> x = IsKey(item);
   while (x->right != nullptr) {
     x = x->right;
   }
