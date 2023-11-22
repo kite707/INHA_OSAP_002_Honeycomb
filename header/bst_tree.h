@@ -1,4 +1,4 @@
-﻿#ifndef BSTTREE_H_
+#ifndef BSTTREE_H_
 #define BSTTREE_H_
 
 /* Node struct */
