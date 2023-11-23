@@ -5,17 +5,17 @@ using namespace std;
 
 // Fixture Class
 template <typename T>
-class BinarySearchTreeTest : public ::testing::Test {
+class BST : public ::testing::Test {
  public:
-  BinarySearchTreeTest() { cout << "Constructor called\n"; }
-  virtual ~BinarySearchTreeTest() { cout << "Destructor called\n"; }
+  BST() { cout << "Constructor called\n"; }
+  virtual ~BST() { cout << "Destructor called\n"; }
 
  protected:
   void SetUp() override {
     cout << "SetUp called\n";
-    tree_.insert(4);
-    tree_.insert(2);
-    tree_.insert(6);
+    tree_.insert(tree_.getRoot(), 4);
+    tree_.insert(tree_.getRoot(), 2);
+    tree_.insert(tree_.getRoot(), 6);
   }
   void TearDown() override { cout << "TearDown called\n"; }
 
@@ -24,8 +24,13 @@ class BinarySearchTreeTest : public ::testing::Test {
   BinarySearchTree<int> tree_;
 };
 
-TEST_F(BinarySearchTree, test_bst_size) {
-  EXPECT_EQ(3, tree_.getSize());
+TEST(BST, test_bst_size) {
+  BinarySearchTree<int> t;
+  t.insert(t.getRoot(), 4);
+  t.insert(t.getRoot(), 2);
+  t.insert(t.getRoot(), 6);
+
+  EXPECT_EQ(3, t.getSize());
 }
 
 // int getSize();
