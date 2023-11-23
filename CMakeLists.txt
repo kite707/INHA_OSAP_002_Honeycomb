@@ -21,12 +21,14 @@ enable_testing()
 
 add_executable(
   tree_test
-  test/avl_tree_test.cc
-  test/bst_tree_test.cc
-  test/set_test.cc
-  source/avl_tree.cc
-  source/bst_tree.cc
+  test/avlTreeTest.cc
+  test/bstTreeTest.cc
+  test/setTest.cc
+  test/mainTest.cc
+  source/avlTree.cc
+  source/bstTree.cc
   source/set.cc
+  source/main.cc
 )
 target_link_libraries(
   tree_test
