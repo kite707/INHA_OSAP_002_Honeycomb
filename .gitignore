@@ -2,4 +2,5 @@
 .vscode
 .idea
 /source/main.out.dSYM
-/source/main.out
+/source/*.out
+/source/main

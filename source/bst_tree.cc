@@ -107,3 +107,11 @@ void BinarySearchTree<T>::Insert_helper(int item) {
   this->size_ = this->size_ + 1;
   return;
 }
+
+template <typename T>
+int BinarySearchTree<T>::getHeight(NodePtr<T> current_node) {
+  if (current_node == nullptr)
+    return 0;
+  else
+    return current_node->height;
+}

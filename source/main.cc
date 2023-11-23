@@ -18,7 +18,9 @@ int main() {
     cin >> Q;
     string s;
     int n;
-    BinarySearchTree<int> tree;
+
+    AVLTree<int> tree;
+
     for (int i = 0; i < Q; ++i) {
       cin >> s;
       if (s == "insert") {
@@ -28,6 +30,4 @@ int main() {
       }
     }
   }
-
-  return;
 }

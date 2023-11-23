@@ -9,13 +9,16 @@ template <typename T>
 class AVLTree : public BinarySearchTree<T> {
  public:
   AVLTree();
-  NodePtr<T> Insert(NodePtr<T>& r, int item);
-  int getBalanceFactor(NodePtr<T>& r);
-  // NodePtr RotateLeft(NodePtr<T>& x);
-  // NodePtr RotateRight(NodePtr<T>& y);
-  // void Balancing(NodePtr<T>& r, int item);
+  NodePtr<T> insert(NodePtr<T> current_node, int item) override;
 
  private:
+  int getBalanceFactor(NodePtr<T> current_node);
+  // 가운데 노드 기준 왼쪽 회전
+  NodePtr<T> rotateLeft(NodePtr<T> centor_node);
+  // 가운데 노드 기준 오른쪽 회전
+  NodePtr<T> rotateRight(NodePtr<T> center_node);
+  // 현재 노드의 밸런스 확인 후, 필요하면 rotate를 이용하여 밸런스 조절
+  void balancing(NodePtr<T>& current_node, int item);
 };
 
 #endif
