@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include "../header/avl_tree.h"
 #include "../header/bst_tree.h"
 #include "../source/avl_tree.cc"
@@ -18,7 +18,9 @@ int main() {
     cin >> Q;
     string s;
     int n;
+
     AVLTree<int> tree;
+
     for (int i = 0; i < Q; ++i) {
       cin >> s;
       if (s == "insert") {

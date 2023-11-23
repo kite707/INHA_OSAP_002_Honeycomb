@@ -32,6 +32,7 @@ class BinarySearchTree {
   // + Implementation required...
 
  protected:
+
   // pointer of root node
   NodePtr<T> root_;
   // total size of BST
