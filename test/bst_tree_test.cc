@@ -1,42 +1,35 @@
 ﻿#include "../header/bst_tree.h"
-#include <gtest/gtest.h>
 #include <iostream>
-using namespace testing;
+#include "gtest/gtest.h"
 using namespace std;
 
 // Fixture Class
 template <typename T>
-class BinarySearchTreeTest : public Test {
+class BinarySearchTreeTest : public ::testing::Test {
  public:
-  BinarySearchTreeTest();
-  virtual ~BinarySearchTreeTest();
-  void SetUp() override;
-  void TearDown() override;
+  BinarySearchTreeTest() { cout << "Constructor called\n"; }
+  virtual ~BinarySearchTreeTest() { cout << "Destructor called\n"; }
 
  protected:
-  BinarySearchTree<T> bst_;  // BST obj member
+  void SetUp() override {
+    cout << "SetUp called\n";
+    tree_.insert(4);
+    tree_.insert(2);
+    tree_.insert(6);
+  }
+  void TearDown() override { cout << "TearDown called\n"; }
+
+  // BinarySearchTree<T> bst_;  // BST obj member
+ protected:
+  BinarySearchTree<int> tree_;
 };
 
-/* Constructor */
-template <typename T>
-BinarySearchTreeTest<T>::BinarySearchTreeTest() {
-  cout << "Constructor called\n";
+TEST_F(BinarySearchTree, test_bst_size) {
+  EXPECT_EQ(3, tree_.getSize());
 }
 
-/* Destructor */
-template <typename T>
-BinarySearchTreeTest<T>::~BinarySearchTreeTest() {
-  cout << "Destructor called\n";
-}
-
-/* SetUp */
-template <typename T>
-void BinarySearchTreeTest<T>::SetUp() {
-  cout << "SetUp called\n";
-}
-
-/* TearDown */
-template <typename T>
-void BinarySearchTreeTest<T>::TearDown() {
-  cout << "TearDown called\n";
-}
+// int getSize();
+// void addSize();
+// bool isEmpty();
+// NodePtr<T> IsKey(int item);
+// int findDepthByValue(int item);
