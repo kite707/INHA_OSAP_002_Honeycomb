@@ -3,11 +3,11 @@
 
 /* Node struct */
 template <typename T>
-struct Node {
+struct Node {  // clang format apply
   T key;
-  Node* left;
-  Node* right;
-  int height;
+  Node* left = nullptr;
+  Node* right = nullptr;
+  int height = 1;
 };
 
 template <typename T>
@@ -21,15 +21,17 @@ class BinarySearchTree {
   int getSize();
   void addSize();
   bool isEmpty();
-  bool IsKey(int item);
+  NodePtr<T> IsKey(int item);
   int findDepthByValue(int item);
   void minimum(int item);
   void maximum(int item);
+  NodePtr<T> getRoot();
+  void Insert_helper(int item);
+  virtual NodePtr<T> insert(NodePtr<T> node, int item);
+  int getHeight(NodePtr<T> current_node);
   // + Implementation required...
 
- private:
-  // data member of node pointer
-
+ protected:
   // pointer of root node
   NodePtr<T> root_;
   // total size of BST
