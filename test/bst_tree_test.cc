@@ -29,12 +29,13 @@ BinaryTreeTestFixture::~BinaryTreeTestFixture() {
 
 /* SetUp */
 void BinaryTreeTestFixture::SetUp() {
-  // bst_.insert(bst_.getRoot(), 1);
+  // 초기화
   cout << "SetUp called\n";
 }
 
 /* TearDown */
 void BinaryTreeTestFixture::TearDown() {
+  // 종료
   cout << "TearDown called\n";
 }
 
@@ -64,6 +65,21 @@ TEST_F(BinaryTreeTestFixture, test_bst_findDepthByValue) {
 TEST_F(BinaryTreeTestFixture, TestGetRoot) {
   NodePtr<int> root = this->bst_.getRoot();
   EXPECT_EQ(root, this->bst_.getRoot());
+}
+/* 테스트: minimum */
+TEST_F(BinaryTreeTestFixture, TestMinimum) {
+  int items[] = {1, 6, 5, 10, 7, 14, 21};
+  for (const int item : items) {
+    this->bst_.Insert(item);
+  }
+
+  int min = this->bst_.minimum(10);  // 채점서버용 테스트: 최솟값 및 depth 출력
+  cout << "10보다 작은 최솟값: " << min << "\n";
+  EXPECT_EQ(7, min);
+
+  min = this->bst_.minimum(6);
+  cout << "6보다 작은 최솟값: " << min << "\n";
+  EXPECT_EQ(5, min);
 }
 // -----abyss-s-----
 
