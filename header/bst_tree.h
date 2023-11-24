@@ -26,8 +26,8 @@ class BinarySearchTree {
   void minimum(int item);
   void maximum(int item);
   NodePtr<T> getRoot();
-  void Insert_helper(int item);
-  virtual NodePtr<T> insert(NodePtr<T> node, int item);
+  virtual NodePtr<T> recursiveInsert(NodePtr<T> node, int item);
+  void Insert(int item);
   int getHeight(NodePtr<T> current_node);
   // + Implementation required...
 

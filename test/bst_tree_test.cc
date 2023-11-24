@@ -1,42 +1,63 @@
 ﻿#include "../header/bst_tree.h"
-#include <gtest/gtest.h>
+#include "../source/bst_tree.cc"
+#include "gtest/gtest.h"
+
 #include <iostream>
-using namespace testing;
 using namespace std;
 
 // Fixture Class
-template <typename T>
-class BinarySearchTreeTest : public Test {
+
+class BinaryTreeTestFixture : public testing::Test {
  public:
-  BinarySearchTreeTest();
-  virtual ~BinarySearchTreeTest();
+  BinaryTreeTestFixture();
+  virtual ~BinaryTreeTestFixture();
+
+ protected:
   void SetUp() override;
   void TearDown() override;
 
+  // BinarySearchTree<T> bst_;  // BST obj member
  protected:
-  BinarySearchTree<T> bst_;  // BST obj member
+  BinarySearchTree<int> bst_;
 };
 
-/* Constructor */
-template <typename T>
-BinarySearchTreeTest<T>::BinarySearchTreeTest() {
+BinaryTreeTestFixture::BinaryTreeTestFixture() {
   cout << "Constructor called\n";
 }
-
-/* Destructor */
-template <typename T>
-BinarySearchTreeTest<T>::~BinarySearchTreeTest() {
+BinaryTreeTestFixture::~BinaryTreeTestFixture() {
   cout << "Destructor called\n";
 }
 
-/* SetUp */
-template <typename T>
-void BinarySearchTreeTest<T>::SetUp() {
+void BinaryTreeTestFixture::SetUp() {
   cout << "SetUp called\n";
+
+  bst_.Insert(4);
+  bst_.Insert(2);
+  bst_.Insert(6);
 }
 
-/* TearDown */
-template <typename T>
-void BinarySearchTreeTest<T>::TearDown() {
+void BinaryTreeTestFixture::TearDown() {
   cout << "TearDown called\n";
+}
+
+TEST_F(BinaryTreeTestFixture, test_bst_isEmpty) {
+  EXPECT_EQ(false, bst_.isEmpty());
+}
+
+TEST_F(BinaryTreeTestFixture, test_bst_size) {
+  EXPECT_EQ(3, bst_.getSize());
+}
+
+TEST_F(BinaryTreeTestFixture, test_bst_isKey) {
+  NodePtr<int> test_node = bst_.getRoot();
+  EXPECT_EQ(test_node, bst_.IsKey(4));
+}
+
+TEST_F(BinaryTreeTestFixture, test_bst_findDepthByValue) {
+  EXPECT_EQ(1, bst_.findDepthByValue(2));
+}
+
+int main(int argc, char** argv) {
+  testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }
