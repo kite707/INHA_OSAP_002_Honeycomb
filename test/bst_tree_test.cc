@@ -1,31 +1,67 @@
 ﻿#include "../header/bst_tree.h"
-#include <iostream>
+#include "../source/bst_tree.cc"
 #include "gtest/gtest.h"
+
+#include <iostream>
 using namespace std;
 
 // Fixture Class
-template <typename T>
-class BST {
+
+class BinaryTreeTestFixture : public testing::Test {
  public:
-  BST() { cout << "Constructor called\n"; }
-  virtual ~BST() { cout << "Destructor called\n"; }
+  BinaryTreeTestFixture();
+  virtual ~BinaryTreeTestFixture();
 
  protected:
   void SetUp() override { cout << "SetUp called\n"; }
   void TearDown() override { cout << "TearDown called\n"; }
 
-  TEST(SizeTest, bst_test) {
-    tree_.insert(tree_.getRoot(), 4);
-    tree_.insert(tree_.getRoot(), 2);
-    tree_.insert(tree_.getRoot(), 6);
-
-    EXPECT_EQ(3, tree_.getSize());
-  }
-
   // BinarySearchTree<T> bst_;  // BST obj member
  protected:
-  BinarySearchTree<int> tree_;
+  BinarySearchTree<int> bst_;
 };
+
+BinaryTreeTestFixture::BinaryTreeTestFixture() {
+  cout << "Constructor called\n";
+}
+BinaryTreeTestFixture::~BinaryTreeTestFixture() {
+  cout << "Destructor called\n";
+}
+
+void BinaryTreeTestFixture::SetUp() {
+  cout << "SetUp called\n";
+
+  bst_.insert(bst_.getRoot(), 4);
+  bst_.insert(bst_.getRoot(), 2);
+  bst_.insert(bst_.getRoot(), 6);
+}
+
+void BinaryTreeTestFixture::TearDown() {
+  cout << "TearDown called\n";
+}
+
+TEST_F(BinaryTreeTestFixture, test_bst_isEmpty) {
+  EXPECT_EQ(false, bst_.isEmpty());
+}
+
+TEST_F(BinaryTreeTestFixture, test_bst_size) {
+  EXPECT_EQ(3, bst_.getSize());
+}
+
+TEST_F(BinaryTreeTestFixture, test_bst_isKey) {
+  NodePtr<int> test_node = bst_.getRoot();
+  EXPECT_EQ(test_node, bst_.IsKey(4));
+}
+
+TEST_F(BinaryTreeTestFixture, test_bst_findDepthByValue) {
+  EXPECT_EQ(1, bst_.findDepthByValue(2));
+}
+
+int main(int argc, char** argv) {
+  testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
+}
+
 // int getSize();
 // void addSize();
 // bool isEmpty();
