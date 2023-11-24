@@ -31,9 +31,9 @@ BinaryTreeTestFixture::~BinaryTreeTestFixture() {
 void BinaryTreeTestFixture::SetUp() {
   cout << "SetUp called\n";
 
-  bst_.insert(bst_.getRoot(), 4);
-  bst_.insert(bst_.getRoot(), 2);
-  bst_.insert(bst_.getRoot(), 6);
+  bst_.Insert(4);
+  bst_.Insert(2);
+  bst_.Insert(6);
 }
 
 void BinaryTreeTestFixture::TearDown() {
@@ -61,9 +61,3 @@ int main(int argc, char** argv) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
-
-// int getSize();
-// void addSize();
-// bool isEmpty();
-// NodePtr<T> IsKey(int item);
-// int findDepthByValue(int item);
