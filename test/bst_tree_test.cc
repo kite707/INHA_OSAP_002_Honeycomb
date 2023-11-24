@@ -61,7 +61,6 @@ TEST_F(BinaryTreeTestFixture, test_bst_findDepthByValue) {
 
 // -----abyss-s-----
 
-
 // -----abyss-s-----
 
 /* 테스트 실행 */
