@@ -13,8 +13,8 @@ class BinaryTreeTestFixture : public testing::Test {
   virtual ~BinaryTreeTestFixture();
 
  protected:
-  void SetUp() override { cout << "SetUp called\n"; }
-  void TearDown() override { cout << "TearDown called\n"; }
+  void SetUp() override;
+  void TearDown() override;
 
   // BinarySearchTree<T> bst_;  // BST obj member
  protected:
