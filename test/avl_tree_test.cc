@@ -12,3 +12,13 @@ TEST(AVLTreeTest, ConstructorTest) {
   ASSERT_EQ(0, size);
   ASSERT_EQ(nullptr, avl.getRoot());
 }
+class AvlTreeTestFixture : public testing::Test {
+ public:
+  AvlTreeTestFixture();
+  virtual ~AvlTreeTestFixture();
+  void SetUp() override;
+  void TearDown() override;
+
+ protected:
+  AVLTree<int> avl_;
+};
