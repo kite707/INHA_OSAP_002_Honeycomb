@@ -60,7 +60,11 @@ TEST_F(BinaryTreeTestFixture, test_bst_findDepthByValue) {
 // -----wuzoo-----
 
 // -----abyss-s-----
-
+/* 테스트: getRoot */
+TEST_F(BinaryTreeTestFixture, TestGetRoot) {
+  NodePtr<int> root = this->bst_.getRoot();
+  EXPECT_EQ(root, this->bst_.getRoot());
+}
 // -----abyss-s-----
 
 /* 테스트 실행 */
