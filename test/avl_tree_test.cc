@@ -22,3 +22,23 @@ class AvlTreeTestFixture : public testing::Test {
  protected:
   AVLTree<int> avl_;
 };
+AvlTreeTestFixture::AvlTreeTestFixture() {
+  // std::cout << "Constructor called\n";
+}
+
+AvlTreeTestFixture::~AvlTreeTestFixture() {
+  // std::cout << "Destructor called\n";
+}
+
+void AvlTreeTestFixture::SetUp() {
+  std::cout << "[SetUp] 1~5삽입\n";
+  avl_.insert(avl_.getRoot(), 1);
+  avl_.insert(avl_.getRoot(), 2);
+  avl_.insert(avl_.getRoot(), 3);
+  avl_.insert(avl_.getRoot(), 4);
+  avl_.insert(avl_.getRoot(), 5);
+}
+void AvlTreeTestFixture::TearDown() {
+  // std::cout << "TearDown called\n";
+}
+
