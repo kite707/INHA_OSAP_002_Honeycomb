@@ -1,10 +1,8 @@
 #include "../header/avl_tree.h"
 #include "../header/bst_tree.h"
-
 // 생성자
 template <typename T>
 AVLTree<T>::AVLTree() : BinarySearchTree<T>() {
-  std::cout << "avl tree 생성자 호출" << std::endl;
 }
 
 // Insert 함수
@@ -15,6 +13,7 @@ NodePtr<T> AVLTree<T>::insert(NodePtr<T> current_node, int item) {
     NodePtr<T> new_node = new Node<T>;
     new_node->key = item;
     current_node = new_node;
+    this->root_ = current_node;
     return current_node;
   }
   // 현재 노드의 key값보다 새로 삽입할 노드의 key값이 더 크다면
@@ -33,6 +32,7 @@ NodePtr<T> AVLTree<T>::insert(NodePtr<T> current_node, int item) {
                          1;
   // 밸런싱 함수 구현
   balancing(current_node, item);
+  this->root_ = current_node;
   return current_node;
 }
 
