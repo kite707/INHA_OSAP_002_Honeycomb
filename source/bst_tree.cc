@@ -54,14 +54,15 @@ int BinarySearchTree<T>::findDepthByValue(int item) {
   return depth;
 }
 
-/* find min */
+/* find min: item보다 작은 값 중 가장 작은 값을 리턴 */
 template <typename T>
-void BinarySearchTree<T>::minimum(int item) {
+T BinarySearchTree<T>::minimum(int item) {
   NodePtr<T> x = IsKey(item);
   while (x->left != nullptr) {
     x = x->left;
   }
   cout << x->key << " " << findDepthByValue(x->key) << "\n";
+  return x->key; // 최솟값 출력 뿐만 아니라 값을 리턴하도록 수정
 }
 
 /* find max */

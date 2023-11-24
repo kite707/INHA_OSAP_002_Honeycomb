@@ -23,7 +23,7 @@ class BinarySearchTree {
   bool isEmpty();
   NodePtr<T> IsKey(int item);
   int findDepthByValue(int item);
-  void minimum(int item);
+  T minimum(int item);
   void maximum(int item);
   NodePtr<T> getRoot();
   virtual NodePtr<T> recursiveInsert(NodePtr<T> node, int item);
