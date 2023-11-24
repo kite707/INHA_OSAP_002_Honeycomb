@@ -80,6 +80,18 @@ NodePtr<T> BinarySearchTree<T>::getRoot() {
   return this->root_;
 }
 
+/* insert helper function to use in main.cc*/
+template <typename T>
+void BinarySearchTree<T>::Insert(int item) {
+  if (IsKey(item)) {
+    cout << item << " is already exists\n";
+    return;
+  }
+  this->root_ = recursiveInsert(this->root_, item);
+  this->size_ = this->size_ + 1;
+  return;
+}
+
 /* insert a node in bst tree*/
 template <typename T>
 NodePtr<T> BinarySearchTree<T>::recursiveInsert(NodePtr<T> node, int item) {
@@ -94,18 +106,6 @@ NodePtr<T> BinarySearchTree<T>::recursiveInsert(NodePtr<T> node, int item) {
     node->left = recursiveInsert(node->left, item);
   }
   return node;
-}
-
-/* insert helper function to use in main.cc*/
-template <typename T>
-void BinarySearchTree<T>::Insert(int item) {
-  if (IsKey(item)) {
-    cout << item << " is already exists\n";
-    return;
-  }
-  this->root_ = recursiveInsert(this->root_, item);
-  this->size_ = this->size_ + 1;
-  return;
 }
 
 template <typename T>
