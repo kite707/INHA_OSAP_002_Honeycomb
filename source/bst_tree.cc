@@ -62,7 +62,7 @@ T BinarySearchTree<T>::minimum(int item) {
     x = x->left;
   }
   cout << x->key << " " << findDepthByValue(x->key) << "\n";
-  return x->key; // 최솟값 출력 뿐만 아니라 값을 리턴하도록 수정
+  return x->key;  // 최솟값 출력 뿐만 아니라 값을 리턴하도록 수정
 }
 
 /* find max */
