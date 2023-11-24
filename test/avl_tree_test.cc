@@ -3,7 +3,12 @@
 #include "../header/bst_tree.h"
 #include "../source/avl_tree.cc"
 #include "../source/bst_tree.cc"
-
+  // SetUp함수 실행 후 테스트 초기 상태
+  //   2
+  //  / \
+  // 1   4
+  //    / \
+  //   3   5
 TEST(AVLTreeTest, ConstructorTest) {
   AVLTree<int> avl;
 
