@@ -67,12 +67,13 @@ T BinarySearchTree<T>::minimum(int item) {
 
 /* find max */
 template <typename T>
-void BinarySearchTree<T>::maximum(int item) {
+T BinarySearchTree<T>::maximum(int item) {
   NodePtr<T> x = IsKey(item);
   while (x->right != nullptr) {
     x = x->right;
   }
   cout << x->key << " " << findDepthByValue(x->key) << "\n";
+  return x->key;
 }
 
 /* Return a root of tree*/
