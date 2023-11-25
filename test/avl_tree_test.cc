@@ -79,3 +79,47 @@ TEST_F(AvlTreeTestFixture, getBalanceFactorTest) {
   this->avl_.insert(4);
   ASSERT_EQ(-1, this->avl_.getBalanceFactor(this->avl_.getRoot()));
 }
+
+TEST_F(AvlTreeTestFixture, BalancingTest_RR) {
+  this->avl_.insert(3);
+  this->avl_.insert(4);
+  this->avl_.insert(5);
+  ASSERT_EQ(1, this->avl_.findDepthByValue(1));
+  ASSERT_EQ(0, this->avl_.findDepthByValue(2));
+  ASSERT_EQ(2, this->avl_.findDepthByValue(3));
+  ASSERT_EQ(1, this->avl_.findDepthByValue(4));
+  ASSERT_EQ(2, this->avl_.findDepthByValue(5));
+}
+
+TEST_F(AvlTreeTestFixture, BalancingTest_RL) {
+  this->avl_.insert(3);
+  this->avl_.insert(5);
+  this->avl_.insert(4);
+  ASSERT_EQ(1, this->avl_.findDepthByValue(1));
+  ASSERT_EQ(0, this->avl_.findDepthByValue(2));
+  ASSERT_EQ(2, this->avl_.findDepthByValue(3));
+  ASSERT_EQ(1, this->avl_.findDepthByValue(4));
+  ASSERT_EQ(2, this->avl_.findDepthByValue(5));
+}
+
+TEST_F(AvlTreeTestFixture, BalancingTest_LL) {
+  this->avl_.insert(3);
+  this->avl_.insert(-1);
+  this->avl_.insert(-2);
+  ASSERT_EQ(2, this->avl_.findDepthByValue(1));
+  ASSERT_EQ(0, this->avl_.findDepthByValue(2));
+  ASSERT_EQ(1, this->avl_.findDepthByValue(3));
+  ASSERT_EQ(1, this->avl_.findDepthByValue(-1));
+  ASSERT_EQ(2, this->avl_.findDepthByValue(-2));
+}
+
+TEST_F(AvlTreeTestFixture, BalancingTest_LR) {
+  this->avl_.insert(3);
+  this->avl_.insert(-2);
+  this->avl_.insert(-1);
+  ASSERT_EQ(2, this->avl_.findDepthByValue(1));
+  ASSERT_EQ(0, this->avl_.findDepthByValue(2));
+  ASSERT_EQ(1, this->avl_.findDepthByValue(3));
+  ASSERT_EQ(1, this->avl_.findDepthByValue(-1));
+  ASSERT_EQ(2, this->avl_.findDepthByValue(-2));
+}
