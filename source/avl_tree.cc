@@ -1,31 +1,29 @@
 #include "../header/avl_tree.h"
 #include "../header/bst_tree.h"
-
 // 생성자
 template <typename T>
-AVLTree<T>::AVLTree() : BinarySearchTree<T>() {
-  std::cout << "avl tree 생성자 호출" << std::endl;
-}
+AVLTree<T>::AVLTree() : BinarySearchTree<T>() {}
 
 // Insert 함수
 template <typename T>
-NodePtr<T> AVLTree<T>::insert(NodePtr<T> current_node, int item) {
+NodePtr<T> AVLTree<T>::recursiveInsert(NodePtr<T> current_node, int item) {
   // leafnode에 도달시 새로운 노드 삽입
   if (current_node == nullptr) {
     NodePtr<T> new_node = new Node<T>;
     new_node->key = item;
     current_node = new_node;
+    this->root_ = current_node;
     return current_node;
   }
   // 현재 노드의 key값보다 새로 삽입할 노드의 key값이 더 크다면
   // 현재 노드의 오른쪽 자식으로 insert 함수 재귀 호출
   else if (current_node->key < item) {
-    current_node->right = insert(current_node->right, item);
+    current_node->right = recursiveInsert(current_node->right, item);
   }
   // 현재 노드의 key값보다 새로 삽입할 노드의 key값이 더 작다면
   // 현재 노드의 왼쪽 자식으로 insert 함수 재귀 호출
   else {
-    current_node->left = insert(current_node->left, item);
+    current_node->left = recursiveInsert(current_node->left, item);
   }
   // 높이 구하기
   current_node->height = std::max(this->getHeight(current_node->left),
@@ -33,12 +31,24 @@ NodePtr<T> AVLTree<T>::insert(NodePtr<T> current_node, int item) {
                          1;
   // 밸런싱 함수 구현
   balancing(current_node, item);
+  this->root_ = current_node;
   return current_node;
+}
+// 값 insert 후 depth리턴하는 함수
+template <typename T>
+int AVLTree<T>::insert(int item) {
+  if (this->IsKey(item)) {
+    std::cout << item << " is already exists\n";
+    return -1;
+  }
+  this->root_ = recursiveInsert(this->root_, item);
+  this->size_ = this->size_ + 1;
+  return this->findDepthByValue(item);
 }
 
 // balancefactor 받아오는 함수
 // 왼쪽 자식과 오른쪽 자식의 차이를 반환
-// getHegiht() 함수를 구현하면 대체
+// getHeight() 함수를 구현하면 대체
 template <typename T>
 int AVLTree<T>::getBalanceFactor(NodePtr<T> current_node) {
   return this->getHeight(current_node->left) -
