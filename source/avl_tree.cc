@@ -7,7 +7,7 @@ AVLTree<T>::AVLTree() : BinarySearchTree<T>() {
 
 // Insert 함수
 template <typename T>
-NodePtr<T> AVLTree<T>::insert(NodePtr<T> current_node, int item) {
+NodePtr<T> AVLTree<T>::recursiveInsert(NodePtr<T> current_node, int item) {
   // leafnode에 도달시 새로운 노드 삽입
   if (current_node == nullptr) {
     NodePtr<T> new_node = new Node<T>;
@@ -38,7 +38,7 @@ NodePtr<T> AVLTree<T>::insert(NodePtr<T> current_node, int item) {
 
 // balancefactor 받아오는 함수
 // 왼쪽 자식과 오른쪽 자식의 차이를 반환
-// getHegiht() 함수를 구현하면 대체
+// getHeight() 함수를 구현하면 대체
 template <typename T>
 int AVLTree<T>::getBalanceFactor(NodePtr<T> current_node) {
   return this->getHeight(current_node->left) -

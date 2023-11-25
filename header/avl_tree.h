@@ -9,7 +9,7 @@ template <typename T>
 class AVLTree : public BinarySearchTree<T> {
  public:
   AVLTree();
-  NodePtr<T> insert(NodePtr<T> current_node, int item) override;
+  NodePtr<T> recursiveInsert(NodePtr<T> current_node, int item) override;
 
  private:
   int getBalanceFactor(NodePtr<T> current_node);
