@@ -66,6 +66,7 @@ TEST_F(BinaryTreeTestFixture, TestGetRoot) {
   NodePtr<int> root = this->bst_.getRoot();
   EXPECT_EQ(root, this->bst_.getRoot());
 }
+
 /* 테스트: minimum */
 TEST_F(BinaryTreeTestFixture, TestMinimum) {
   int items[] = {1, 6, 5, 10, 7, 14, 21};
@@ -81,6 +82,21 @@ TEST_F(BinaryTreeTestFixture, TestMinimum) {
   cout << "6보다 작은 최솟값: " << min << "\n";
   EXPECT_EQ(5, min);
 }
+
+/* 테스트: maximum */
+TEST_F(BinaryTreeTestFixture, TestMaximum) {
+  int items[] = {1, 6, 5, 10, 17, 14, 21};
+  for (const int item : items) {
+    this->bst_.Insert(item);
+  }
+
+  int max = this->bst_.maximum(17);
+  cout << "17이 루트인 부분트리의 최댓값: " << max << "\n";
+  EXPECT_EQ(21, max);
+
+  // 더 테스트 필요함.
+}
+
 // -----abyss-s-----
 
 /* 테스트 실행 */
