@@ -97,6 +97,23 @@ TEST_F(BinaryTreeTestFixture, TestMaximum) {
   // 더 테스트 필요함.
 }
 
+/* 테스트: insert */
+TEST_F(BinaryTreeTestFixture, TestInsert) {
+  int items[] = {1, 6, 5, 10, 7, 14, 21};
+  for (const int item : items) {
+    this->bst_.Insert(item);
+  }
+
+  NodePtr<int> node1 = this->bst_.IsKey(1);
+  EXPECT_EQ(node1->key, 1) << "테스트 실패";
+  NodePtr<int> node6 = this->bst_.IsKey(6);
+  EXPECT_EQ(node6->key, 6) << "테스트 실패";
+  NodePtr<int> node7 = this->bst_.IsKey(7);
+  EXPECT_EQ(node7->key, 7) << "테스트 실패";
+  NodePtr<int> node10 = this->bst_.IsKey(10);
+  EXPECT_EQ(node10->key, 11) << "테스트 실패";  // 일부러 실패하는 케이스 생성
+}
+
 // -----abyss-s-----
 
 /* 테스트 실행 */
