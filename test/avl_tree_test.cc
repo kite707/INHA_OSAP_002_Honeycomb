@@ -47,3 +47,14 @@ void AvlTreeTestFixture::TearDown() {
   // std::cout << "TearDown called\n";
 }
 
+TEST_F(AvlTreeTestFixture, insertTest) {
+  ASSERT_EQ(1, this->avl_.findDepthByValue(1));
+  ASSERT_EQ(0, this->avl_.findDepthByValue(2));
+  ASSERT_EQ(2, this->avl_.findDepthByValue(3));
+  ASSERT_EQ(1, this->avl_.findDepthByValue(4));
+  ASSERT_EQ(2, this->avl_.findDepthByValue(5));
+}
+int main(int argc, char** argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
+}
