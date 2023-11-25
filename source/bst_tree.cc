@@ -69,6 +69,9 @@ T BinarySearchTree<T>::minimum(int item) {
 template <typename T>
 T BinarySearchTree<T>::maximum(int item) {
   NodePtr<T> x = IsKey(item);
+  if (x == nullptr) {
+    return T{};
+  }
   while (x->right != nullptr) {
     x = x->right;
   }
