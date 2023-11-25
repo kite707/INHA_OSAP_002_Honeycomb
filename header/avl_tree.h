@@ -10,9 +10,10 @@ class AVLTree : public BinarySearchTree<T> {
  public:
   AVLTree();
   NodePtr<T> recursiveInsert(NodePtr<T> current_node, int item) override;
-
- private:
+  int insert(int item);
   int getBalanceFactor(NodePtr<T> current_node);
+
+ protected:
   // 가운데 노드 기준 왼쪽 회전
   NodePtr<T> rotateLeft(NodePtr<T> centor_node);
   // 가운데 노드 기준 오른쪽 회전
