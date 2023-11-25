@@ -110,10 +110,36 @@ TEST_F(BinaryTreeTestFixture, TestInsert) {
   EXPECT_EQ(node6->key, 6) << "테스트 실패";
   NodePtr<int> node7 = this->bst_.IsKey(7);
   EXPECT_EQ(node7->key, 7) << "테스트 실패";
+
+  /*
   NodePtr<int> node10 = this->bst_.IsKey(10);
   EXPECT_EQ(node10->key, 11) << "테스트 실패";  // 일부러 실패하는 케이스 생성
+  */
 }
 
+// 테스트: recursiveInsert
+TEST_F(BinaryTreeTestFixture, TestRecursiveInsert) {
+  int items[] = {1, 6, 5, 10, 7, 14, 21};
+  NodePtr<int> root = nullptr;
+  for (const int item : items) {
+    bst_.Insert(item);
+  }
+
+  root = this->bst_.getRoot();
+  EXPECT_EQ(root, this->bst_.getRoot());
+
+  EXPECT_TRUE(this->bst_.IsKey(1) != nullptr);
+  EXPECT_TRUE(this->bst_.IsKey(6) != nullptr);
+  EXPECT_TRUE(this->bst_.IsKey(5) != nullptr);
+  EXPECT_TRUE(this->bst_.IsKey(10) != nullptr);
+  EXPECT_TRUE(this->bst_.IsKey(7) != nullptr);
+  EXPECT_TRUE(this->bst_.IsKey(14) != nullptr);
+  EXPECT_TRUE(this->bst_.IsKey(21) != nullptr);
+
+  /*
+  EXPECT_TRUE(this->bst_.IsKey(22) != nullptr);  // 일부러 실패하는 케이스 생성
+  */
+}
 // -----abyss-s-----
 
 /* 테스트 실행 */
