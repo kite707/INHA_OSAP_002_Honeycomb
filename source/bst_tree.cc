@@ -1,4 +1,5 @@
 ﻿#include "../header/bst_tree.h"
+#include <algorithm>
 #include <iostream>
 
 using namespace std;
@@ -103,13 +104,15 @@ NodePtr<T> BinarySearchTree<T>::recursiveInsert(NodePtr<T> node, int item) {
   if (node == nullptr) {
     NodePtr<T> z = new Node<T>;
     z->key = item;
-    node = z;
-    return node;
+    return z;
   } else if (node->key < item) {
     node->right = recursiveInsert(node->right, item);
   } else {
     node->left = recursiveInsert(node->left, item);
   }
+
+  node->height =
+      1 + max(getHeight(node->left), getHeight(node->right));  // 높이 업뎃
   return node;
 }
 
