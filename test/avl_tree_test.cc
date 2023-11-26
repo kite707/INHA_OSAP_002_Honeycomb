@@ -117,3 +117,24 @@ TEST_F(AvlTreeTestFixture, BalancingTest_LR) {
   ASSERT_EQ(1, this->avl_.findDepthByValue(-1));
   ASSERT_EQ(2, this->avl_.findDepthByValue(-2));
 }
+
+TEST_F(AvlTreeTestFixture, eraseTest) {
+  this->avl_.insert(3);
+  this->avl_.insert(4);
+
+  int key = 1;
+  cout << "삭제할 키: " << key << "\n";
+  int size_before = avl_.getSize();
+  int depth_before = avl_.findDepthByValue(key);
+  cout << "삭제 이전 depth: " << depth_before << "\n";
+  cout << "삭제 이전 size: " << size_before << "\n";
+
+  int depth_after = avl_.erase(key);
+  int size_after = avl_.getSize();
+  cout << "삭제 이후 depth: " << depth_after << "\n";
+  cout << "삭제 이후 size: " << size_after << "\n";
+
+  EXPECT_EQ(depth_before, depth_after);
+  EXPECT_EQ(avl_.IsKey(key), nullptr);
+  EXPECT_EQ(size_after, size_before - 1);
+}
