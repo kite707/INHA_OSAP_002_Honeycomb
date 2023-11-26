@@ -121,7 +121,7 @@ TEST_F(BinaryTreeTestFixture, EraseTest) {
   cout << "삭제 이전 depth: " << depth_before << "\n";
   cout << "삭제 이전 size: " << size_before << "\n";
 
-  int depth_after = bst_.erase(key);  
+  int depth_after = bst_.erase(key);
   int size_after = bst_.getSize();
   cout << "삭제 이후 depth: " << depth_after << "\n";
   cout << "삭제 이후 size: " << size_after << "\n";
