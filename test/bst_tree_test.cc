@@ -35,26 +35,26 @@ void BinaryTreeTestFixture::SetUp() {
 /* TearDown */
 void BinaryTreeTestFixture::TearDown() {}
 
-TEST_F(BinaryTreeTestFixture, test_bst_isEmpty) {
+TEST_F(BinaryTreeTestFixture, TestIsEmpty) {
   EXPECT_EQ(false, bst_.isEmpty());
 }
 
-TEST_F(BinaryTreeTestFixture, test_bst_getSize) {
+TEST_F(BinaryTreeTestFixture, TestGetSize) {
   EXPECT_EQ(7, bst_.getSize());
 }
 
-TEST_F(BinaryTreeTestFixture, test_bst_addSize) {
+TEST_F(BinaryTreeTestFixture, TestAddSize) {
   EXPECT_EQ(7, bst_.getSize());
   bst_.addSize();
   EXPECT_EQ(8, bst_.getSize());
 }
 
-TEST_F(BinaryTreeTestFixture, test_bst_isKey) {
+TEST_F(BinaryTreeTestFixture, TestIsKey) {
   NodePtr<int> test_node = bst_.getRoot();
   EXPECT_EQ(test_node, bst_.IsKey(1));
 }
 
-TEST_F(BinaryTreeTestFixture, test_bst_findDepthByValue) {
+TEST_F(BinaryTreeTestFixture, TestFindDepthByValue) {
   EXPECT_EQ(2, bst_.findDepthByValue(5));
 }
 
@@ -104,6 +104,13 @@ TEST_F(BinaryTreeTestFixture, TestRecursiveInsert) {
   EXPECT_TRUE(this->bst_.IsKey(7) != nullptr);
   EXPECT_TRUE(this->bst_.IsKey(14) != nullptr);
   EXPECT_TRUE(this->bst_.IsKey(21) != nullptr);
+}
+
+TEST_F(BinaryTreeTestFixture, TestRank) {
+  EXPECT_EQ(1, bst_.rank(bst_.getRoot(), 1));
+  EXPECT_EQ(7, bst_.rank(bst_.getRoot(), 21));
+  EXPECT_EQ(5, bst_.rank(bst_.getRoot(), 10));
+  EXPECT_EQ(4, bst_.rank(bst_.getRoot(), 7));
 }
 
 /* 테스트 실행 */
