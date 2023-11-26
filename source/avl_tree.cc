@@ -194,7 +194,7 @@ void AVLTree<T>::transplant(NodePtr<T>& x) {
     }  // 그 z(successor)의 오른쪽 자식 p[z]의 왼쪽에 붙여주기
 
     // 이식 후 높이 업데이트
-    pZ->height = 1 + max(getHeight(pZ->left), getHeight(pZ->right));
+    pZ->height = 1 + max(this->getHeight(pZ->left), this->getHeight(pZ->right));
     x = pZ;
 
     delete y;  // 메모리 해제
