@@ -113,6 +113,23 @@ TEST_F(BinaryTreeTestFixture, TestRank) {
   EXPECT_EQ(4, bst_.rank(bst_.getRoot(), 7));
 }
 
+TEST_F(BinaryTreeTestFixture, EraseTest) {
+  int key = 10;
+  cout << "삭제할 키: " << key << "\n";
+  int depth_before = bst_.findDepthByValue(key);
+  int size_before = bst_.getSize();
+  cout << "삭제 이전 depth: " << depth_before << "\n";
+  cout << "삭제 이전 size: " << size_before << "\n";
+
+  int depth_after = bst_.erase(key);  
+  int size_after = bst_.getSize();
+  cout << "삭제 이후 depth: " << depth_after << "\n";
+  cout << "삭제 이후 size: " << size_after << "\n";
+  EXPECT_EQ(depth_before, depth_after);
+  EXPECT_EQ(bst_.IsKey(key), nullptr);
+  EXPECT_EQ(size_after, size_before - 1);
+}
+
 /* 테스트 실행 */
 int main(int argc, char** argv) {
   InitGoogleTest(&argc, argv);
