@@ -88,14 +88,14 @@ NodePtr<T> BinarySearchTree<T>::getRoot() {
 
 /* insert helper function to use in main.cc*/
 template <typename T>
-void BinarySearchTree<T>::Insert(int item) {
+int BinarySearchTree<T>::insert(int item) {
   if (IsKey(item)) {
     cout << item << " is already exists\n";
-    return;
+    return -1;
   }
   this->root_ = recursiveInsert(this->root_, item);
   this->size_ = this->size_ + 1;
-  return;
+  return this->findDepthByValue(item);
 }
 
 /* insert a node in bst tree*/

@@ -71,7 +71,7 @@ TEST_F(BinaryTreeTestFixture, TestGetRoot) {
 TEST_F(BinaryTreeTestFixture, TestMinimum) {
   int items[] = {1, 6, 5, 10, 7, 14, 21};
   for (const int item : items) {
-    this->bst_.Insert(item);
+    this->bst_.insert(item);
   }
 
   int min = this->bst_.minimum(10);  // 채점서버용 테스트: 최솟값 및 depth 출력
@@ -87,7 +87,7 @@ TEST_F(BinaryTreeTestFixture, TestMinimum) {
 TEST_F(BinaryTreeTestFixture, TestMaximum) {
   int items[] = {1, 6, 5, 10, 17, 14, 21};
   for (const int item : items) {
-    this->bst_.Insert(item);
+    this->bst_.insert(item);
   }
 
   int max = this->bst_.maximum(17);
@@ -101,7 +101,7 @@ TEST_F(BinaryTreeTestFixture, TestMaximum) {
 TEST_F(BinaryTreeTestFixture, TestInsert) {
   int items[] = {1, 6, 5, 10, 7, 14, 21};
   for (const int item : items) {
-    this->bst_.Insert(item);
+    this->bst_.insert(item);
   }
 
   NodePtr<int> node1 = this->bst_.IsKey(1);
@@ -122,7 +122,7 @@ TEST_F(BinaryTreeTestFixture, TestRecursiveInsert) {
   int items[] = {1, 6, 5, 10, 7, 14, 21};
   NodePtr<int> root = nullptr;
   for (const int item : items) {
-    bst_.Insert(item);
+    bst_.insert(item);
   }
 
   root = this->bst_.getRoot();
