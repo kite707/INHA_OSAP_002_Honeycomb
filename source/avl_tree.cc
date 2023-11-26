@@ -5,7 +5,7 @@ using namespace std;
 
 // 생성자
 template <typename T>
-AVLTree<T>::AVLTree() : BinarySearchTree<T>() {}
+AVLTree<T>::AVLTree() : BinarySearchTree<T>(){};  // 자동 초기화
 
 // Insert 함수
 template <typename T>
@@ -131,7 +131,7 @@ int AVLTree<T>::erase(const T& key) {
   if (node != nullptr) {
     int depth = this->findDepthByValue(key);
     eraseNode(this->root_, key);
-    size_--;
+    this->size_ = this->size_ - 1;
     return depth;
   } else {
     return 0;
@@ -150,26 +150,53 @@ void AVLTree<T>::eraseNode(NodePtr<T>& root, const T& key) {
   } else if (key > root->key) {
     eraseNode(root->right, key);
   } else {
-    NodePtr<T> temp;  // 메모리 누수 방지를 위한 임시 포인터
     if (root->left == nullptr) {
-      temp = root->right;
-      delete root;
-      root = temp;
+      transplant(root->right);
     } else if (root->right == nullptr) {
-      temp = root->left;
-      delete root;
-      root = temp;
+      transplant(root->left);
     } else {
       NodePtr<T> successor = findSuccessor(root->right);
       root->key = successor->key;
       eraseNode(root->right, successor->key);
     }
 
-    // 높이 업데이트 및 밸런싱
-    if (root != nullptr) {
-      root->height = 1 + max(getHeight(root->left), getHeight(root->right));
-      balancing(root, key);
+    root->height = 1 + max(this->getHeight(root->left), this->getHeight(root->right));
+  }
+}
+
+/* Transplant: 자식 노드 이식 함수 */
+template <typename T>
+void AVLTree<T>::transplant(NodePtr<T>& x) {
+  NodePtr<T> y = x;  // 노드 삭제를 위해 y 사용
+
+  if (x->left == nullptr) {
+    x = x->right;
+  } else if (x->right == nullptr) {
+    x = x->left;
+  } else {
+    NodePtr<T> z = x->right;  // z : 삭제할 x의 다음으로 가장 작은 수
+    NodePtr<T> pZ = x;        // p[z] : z의 부모 노드
+
+    /* 오른쪽 자식중 가장 작은 값 찾기*/
+    while (z->left != nullptr) {
+      pZ = z;
+      z = z->left;
     }
+
+    x->key = z->key;  // successor과 key값 교환
+
+    /* 오른쪽 자식이 가장 작다면 */
+    if (pZ == x) {
+      pZ->right = z->right;  // z의 오른쪽 자식 붙여주기
+    } else {
+      pZ->left = z->right;  // 오른쪽 자식의 왼쪽 자식이 있다면
+    }  // 그 z(successor)의 오른쪽 자식 p[z]의 왼쪽에 붙여주기
+
+    // 이식 후 높이 업데이트
+    pZ->height = 1 + max(getHeight(pZ->left), getHeight(pZ->right));
+    x = pZ;
+
+    delete y;  // 메모리 해제
   }
 }
 

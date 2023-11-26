@@ -14,6 +14,7 @@ class AVLTree : public BinarySearchTree<T> {
   int getBalanceFactor(NodePtr<T> current_node);
   int erase(const T& key);
   void eraseNode(NodePtr<T>& root, const T& key);
+  void transplant(NodePtr<T>& x);
   NodePtr<T> findSuccessor(const NodePtr<T>& node);
 
  protected:
