@@ -123,3 +123,31 @@ int BinarySearchTree<T>::getHeight(NodePtr<T> current_node) {
   else
     return current_node->height;
 }
+
+template <typename T>
+int BinarySearchTree<T>::countNodesSmallerThan(NodePtr<T> root, int target) {
+  if (root == nullptr) {
+    return 0;
+  }
+
+  if (target < root->key) {
+    return countNodesSmallerThan(root->left, target);
+  } else if (target > root->key) {
+    // 현재 노드와 현재 노드의 왼쪽 서브트리에 있는 노드의 개수를 합산
+    return 1 + countNodesSmallerThan(root->right, target) +
+           countNodesSmallerThan(root->left, target);
+  } else {
+    // 현재 노드와 현재 노드의 왼쪽 서브트리에 있는 노드의 개수를 합산
+    return countNodesSmallerThan(root->left, target);
+  }
+}
+
+template <typename T>
+int BinarySearchTree<T>::rank(NodePtr<T> root, int target) {
+  // cout << findDepthByValue(target) << " "
+  //      << countNodesSmallerThan(root, target) + 1 << '\n';
+  return countNodesSmallerThan(root, target) + 1;
+}
+
+// countNodesSmallerThan 은 자신보다 낮은 노드 개수를 세주는 함수
+// Rank는 자신보다 작은 노드 개수 + 1 = rank를 구하는 함수.
