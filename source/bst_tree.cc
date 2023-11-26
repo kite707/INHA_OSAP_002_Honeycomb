@@ -1,4 +1,5 @@
 ﻿#include "../header/bst_tree.h"
+#include <algorithm>
 #include <iostream>
 
 using namespace std;
@@ -54,24 +55,29 @@ int BinarySearchTree<T>::findDepthByValue(int item) {
   return depth;
 }
 
-/* find min */
+/* find min: item보다 작은 값 중 가장 작은 값을 리턴 */
 template <typename T>
-void BinarySearchTree<T>::minimum(int item) {
+T BinarySearchTree<T>::minimum(int item) {
   NodePtr<T> x = IsKey(item);
   while (x->left != nullptr) {
     x = x->left;
   }
   cout << x->key << " " << findDepthByValue(x->key) << "\n";
+  return x->key;  // 최솟값 출력 뿐만 아니라 값을 리턴하도록 수정
 }
 
 /* find max */
 template <typename T>
-void BinarySearchTree<T>::maximum(int item) {
+T BinarySearchTree<T>::maximum(int item) {
   NodePtr<T> x = IsKey(item);
+  if (x == nullptr) {
+    return T{};
+  }
   while (x->right != nullptr) {
     x = x->right;
   }
   cout << x->key << " " << findDepthByValue(x->key) << "\n";
+  return x->key;
 }
 
 /* Return a root of tree*/
@@ -82,14 +88,14 @@ NodePtr<T> BinarySearchTree<T>::getRoot() {
 
 /* insert helper function to use in main.cc*/
 template <typename T>
-void BinarySearchTree<T>::Insert(int item) {
+int BinarySearchTree<T>::insert(int item) {
   if (IsKey(item)) {
     cout << item << " is already exists\n";
-    return;
+    return -1;
   }
   this->root_ = recursiveInsert(this->root_, item);
   this->size_ = this->size_ + 1;
-  return;
+  return this->findDepthByValue(item);
 }
 
 /* insert a node in bst tree*/
@@ -98,13 +104,15 @@ NodePtr<T> BinarySearchTree<T>::recursiveInsert(NodePtr<T> node, int item) {
   if (node == nullptr) {
     NodePtr<T> z = new Node<T>;
     z->key = item;
-    node = z;
-    return node;
+    return z;
   } else if (node->key < item) {
     node->right = recursiveInsert(node->right, item);
   } else {
     node->left = recursiveInsert(node->left, item);
   }
+
+  node->height =
+      1 + max(getHeight(node->left), getHeight(node->right));  // 높이 업뎃
   return node;
 }
 
