@@ -160,7 +160,8 @@ void AVLTree<T>::eraseNode(NodePtr<T>& root, const T& key) {
       eraseNode(root->right, successor->key);
     }
 
-    root->height = 1 + max(this->getHeight(root->left), this->getHeight(root->right));
+    root->height =
+        1 + max(this->getHeight(root->left), this->getHeight(root->right));
   }
 }
 
