@@ -29,6 +29,10 @@ class BinarySearchTree {
   virtual NodePtr<T> recursiveInsert(NodePtr<T> node, int item);
   int insert(int item);
   int getHeight(NodePtr<T> current_node);
+
+  int countNodesSmallerThan(NodePtr<T> root, int target);
+  int rank(NodePtr<T> root, int target);
+
   // + Implementation required...
 
  protected:
