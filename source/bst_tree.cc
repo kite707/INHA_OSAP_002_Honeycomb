@@ -162,7 +162,7 @@ int BinarySearchTree<T>::erase(const T& key) {
     size_--;
     return depth;
   } else
-    return -1;
+    return 0;
 }
 
 /* eraseNode: 자식 이식 및 후임자를 활용한 실질적인 노드 삭제 수행 */
