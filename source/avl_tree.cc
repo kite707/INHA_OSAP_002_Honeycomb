@@ -1,5 +1,6 @@
 #include "../header/avl_tree.h"
 #include "../header/bst_tree.h"
+#include "algorithm"
 // 생성자
 template <typename T>
 AVLTree<T>::AVLTree() : BinarySearchTree<T>() {}
@@ -119,4 +120,63 @@ void AVLTree<T>::balancing(NodePtr<T>& current_node, int item) {
     current_node->right = rotateRight(current_node->right);
     current_node = rotateLeft(current_node);
   }
+}
+
+/* erase: 노드 삭제 후 depth 반환하기 */
+template <typename T>
+int AVLTree<T>::erase(const T& key) {
+  NodePtr<T> node = this->IsKey(key);
+  if (node != nullptr) {
+    int depth = this->findDepthByValue(key);
+    eraseNode(this->root_, key);
+    size_--;
+    return depth;
+  } else {
+    return 0;
+  }
+}
+
+/* eraseNode: 실질적인 노드 삭제 수행 */
+template <typename T>
+void AVLTree<T>::eraseNode(NodePtr<T>& root, const T& key) {
+  if (root == nullptr) {
+    return;  // 비어 있다면 넘기기
+  }
+
+  if (key < root->key) {
+    eraseNode(root->left, key);
+  } else if (key > root->key) {
+    eraseNode(root->right, key);
+  } else {
+    NodePtr<T> temp;  // 메모리 누수 방지를 위한 임시 포인터
+    if (root->left == nullptr) {
+      temp = root->right;
+      delete root;
+      root = temp;
+    } else if (root->right == nullptr) {
+      temp = root->left;
+      delete root;
+      root = temp;
+    } else {
+      NodePtr<T> successor = findSuccessor(root->right);
+      root->key = successor->key;
+      eraseNode(root->right, successor->key);
+    }
+
+    // 높이 업데이트 및 밸런싱
+    if (root != nullptr) {
+      root->height = 1 + max(getHeight(root->left), getHeight(root->right));
+      balancing(root, key);
+    }
+  }
+}
+
+/* findSuccessor: 후임자 찾기 역할 */
+template <typename T>
+NodePtr<T> AVLTree<T>::findSuccessor(const NodePtr<T>& node) {
+  NodePtr<T> current = node;
+  while (current->left != nullptr) {
+    current = current->left;
+  }
+  return current;
 }

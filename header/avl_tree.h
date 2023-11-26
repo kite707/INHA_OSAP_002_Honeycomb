@@ -12,6 +12,9 @@ class AVLTree : public BinarySearchTree<T> {
   NodePtr<T> recursiveInsert(NodePtr<T> current_node, int item) override;
   int insert(int item);
   int getBalanceFactor(NodePtr<T> current_node);
+  int erase(const T& key);
+  void eraseNode(NodePtr<T>& root, const T& key);
+  NodePtr<T> findSuccessor(const NodePtr<T>& node);
 
  protected:
   // 가운데 노드 기준 왼쪽 회전
