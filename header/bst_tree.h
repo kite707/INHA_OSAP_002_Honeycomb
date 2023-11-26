@@ -18,6 +18,7 @@ template <typename T>
 class BinarySearchTree {
  public:
   BinarySearchTree();
+  int getHeight(NodePtr<T> current_node);
   int getSize();
   void addSize();
   bool isEmpty();
@@ -28,12 +29,12 @@ class BinarySearchTree {
   NodePtr<T> getRoot();
   virtual NodePtr<T> recursiveInsert(NodePtr<T> node, int item);
   int insert(int item);
-  int getHeight(NodePtr<T> current_node);
-
   int countNodesSmallerThan(NodePtr<T> root, int target);
   int rank(NodePtr<T> root, int target);
-
-  // + Implementation required...
+  int erase(const T& key);
+  void eraseNode(NodePtr<T>& root, const T& key);
+  void transplant(NodePtr<T>& x);
+  NodePtr<T> findSuccessor(const NodePtr<T>& node);
 
  protected:
   // pointer of root node
