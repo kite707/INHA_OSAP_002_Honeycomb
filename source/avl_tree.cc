@@ -1,6 +1,8 @@
 #include "../header/avl_tree.h"
 #include "../header/bst_tree.h"
 #include "algorithm"
+using namespace std;
+
 // 생성자
 template <typename T>
 AVLTree<T>::AVLTree() : BinarySearchTree<T>() {}
