@@ -31,22 +31,16 @@ class AvlTreeTestFixture : public testing::Test {
  protected:
   AVLTree<int> avl_;
 };
-AvlTreeTestFixture::AvlTreeTestFixture() {
-  // std::cout << "Constructor called\n";
-}
+AvlTreeTestFixture::AvlTreeTestFixture() {}
 
-AvlTreeTestFixture::~AvlTreeTestFixture() {
-  // std::cout << "Destructor called\n";
-}
+AvlTreeTestFixture::~AvlTreeTestFixture() {}
 
 void AvlTreeTestFixture::SetUp() {
   std::cout << "[SetUp] 1~2삽입\n";
   avl_.insert(1);
   avl_.insert(2);
 }
-void AvlTreeTestFixture::TearDown() {
-  // std::cout << "TearDown called\n";
-}
+void AvlTreeTestFixture::TearDown() {}
 
 // 현재 상태(1~3 삽입)
 //   2
