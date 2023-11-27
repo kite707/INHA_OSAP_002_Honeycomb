@@ -38,7 +38,6 @@ NodePtr<T> AVLTree<T>::recursiveInsert(NodePtr<T> current_node, int item) {
 template <typename T>
 int AVLTree<T>::insert(int item) {
   if (this->IsKey(item)) {
-    std::cout << item << " is already exists\n";
     return -1;
   }
   this->root_ = recursiveInsert(this->root_, item);
@@ -56,17 +55,17 @@ int AVLTree<T>::getBalanceFactor(NodePtr<T> current_node) {
 }
 
 // RotateLeft 함수
-// centor_node를 중심으로 왼쪽으로 회전
+// center_node를 중심으로 왼쪽으로 회전
 template <typename T>
-NodePtr<T> AVLTree<T>::rotateLeft(NodePtr<T> centor_node) {
-  NodePtr<T> parent_node = centor_node->right;
-  centor_node->right = parent_node->left;
-  parent_node->left = centor_node;
+NodePtr<T> AVLTree<T>::rotateLeft(NodePtr<T> center_node) {
+  NodePtr<T> parent_node = center_node->right;
+  center_node->right = parent_node->left;
+  parent_node->left = center_node;
 
-  // centor_node와 parent_node 위치 재조정
+  // center_node와 parent_node 위치 재조정
   //  bst 에서 높이를 받는 함수생성 후 대체 가능
-  centor_node->height = std::max(this->getHeight(centor_node->left),
-                                 this->getHeight(centor_node->right)) +
+  center_node->height = std::max(this->getHeight(center_node->left),
+                                 this->getHeight(center_node->right)) +
                         1;
   parent_node->height = std::max(this->getHeight(parent_node->left),
                                  this->getHeight(parent_node->right)) +
@@ -76,17 +75,17 @@ NodePtr<T> AVLTree<T>::rotateLeft(NodePtr<T> centor_node) {
 }
 
 // RotateRight 함수
-// centor_node를 중심으로 오른쪽으로 회전
+// center_node를 중심으로 오른쪽으로 회전
 template <typename T>
-NodePtr<T> AVLTree<T>::rotateRight(NodePtr<T> centor_node) {
-  NodePtr<T> parent_node = centor_node->left;
-  centor_node->left = parent_node->right;
-  parent_node->right = centor_node;
+NodePtr<T> AVLTree<T>::rotateRight(NodePtr<T> center_node) {
+  NodePtr<T> parent_node = center_node->left;
+  center_node->left = parent_node->right;
+  parent_node->right = center_node;
 
-  // centor_node와 parent_node 위치 재조정
+  // center_node와 parent_node 위치 재조정
   //  bst 에서 높이를 받는 함수생성 후 대체 가능
-  centor_node->height = std::max(this->getHeight(centor_node->left),
-                                 this->getHeight(centor_node->right)) +
+  center_node->height = std::max(this->getHeight(center_node->left),
+                                 this->getHeight(center_node->right)) +
                         1;
   parent_node->height = std::max(this->getHeight(parent_node->left),
                                  this->getHeight(parent_node->right)) +
