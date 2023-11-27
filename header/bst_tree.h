@@ -1,14 +1,7 @@
 ﻿#ifndef BSTTREE_H_
 #define BSTTREE_H_
 
-/* Node struct */
-template <typename T>
-struct Node {  // clang format apply
-  T key;
-  Node* left = nullptr;
-  Node* right = nullptr;
-  int height = 1;
-};
+#include "tree_node.h"
 
 template <typename T>
 using NodePtr = Node<T>*;
