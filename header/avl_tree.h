@@ -1,6 +1,7 @@
 ﻿#ifndef AVLTREE_H_
 #define AVLTREE_H_
 
+#include <algorithm>
 #include "bst_tree.h"
 
 /* AVL Tree Class */
