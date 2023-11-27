@@ -6,7 +6,7 @@ AVLTree<T>::AVLTree() : BinarySearchTree<T>() {}
 
 // Insert 함수
 template <typename T>
-NodePtr<T> AVLTree<T>::recursiveInsert(NodePtr<T> current_node, int item) {
+NodePtr<T> AVLTree<T>::recursiveInsert(NodePtr<T> current_node, T item) {
   // leafnode에 도달시 새로운 노드 삽입
   if (current_node == nullptr) {
     NodePtr<T> new_node = new Node<T>;
@@ -36,7 +36,7 @@ NodePtr<T> AVLTree<T>::recursiveInsert(NodePtr<T> current_node, int item) {
 }
 // 값 insert 후 depth리턴하는 함수
 template <typename T>
-int AVLTree<T>::insert(int item) {
+int AVLTree<T>::insert(T item) {
   if (this->IsKey(item)) {
     return -1;
   }
@@ -97,7 +97,7 @@ NodePtr<T> AVLTree<T>::rotateRight(NodePtr<T> center_node) {
 // Balancing 함수
 // insert에서 재귀적으로 돌면서 밸런스가 깨진 노드들 밸런스 다시 맞춤
 template <typename T>
-void AVLTree<T>::balancing(NodePtr<T>& current_node, int item) {
+void AVLTree<T>::balancing(NodePtr<T>& current_node, T item) {
   int balance_factor = getBalanceFactor(current_node);
 
   // LL
