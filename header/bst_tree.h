@@ -14,13 +14,13 @@ class BinarySearchTree {
   int getSize();
   void addSize();
   bool isEmpty();
-  NodePtr<T> IsKey(int item);
-  int findDepthByValue(int item);
-  T minimum(int item);
-  T maximum(int item);
+  NodePtr<T> IsKey(T item);
+  int findDepthByValue(T item);
+  T minimum(T item);
+  T maximum(T item);
   NodePtr<T> getRoot();
-  virtual NodePtr<T> recursiveInsert(NodePtr<T> node, int item);
-  int insert(int item);
+  virtual NodePtr<T> recursiveInsert(NodePtr<T> node, T item);
+  int insert(T item);
   int getHeight(NodePtr<T> current_node);
   // + Implementation required...
 
