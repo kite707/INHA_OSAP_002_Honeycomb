@@ -125,7 +125,7 @@ int BinarySearchTree<T>::getHeight(NodePtr<T> current_node) {
 }
 
 template <typename T>
-int BinarySearchTree<T>::countNodesSmallerThan(NodePtr<T> root, int target) {
+int BinarySearchTree<T>::countNodesSmallerThan(NodePtr<T> root, T target) {
   if (root == nullptr) {
     return 0;
   }
@@ -143,7 +143,7 @@ int BinarySearchTree<T>::countNodesSmallerThan(NodePtr<T> root, int target) {
 }
 
 template <typename T>
-int BinarySearchTree<T>::rank(NodePtr<T> root, int target) {
+int BinarySearchTree<T>::rank(NodePtr<T> root, T target) {
   // cout << findDepthByValue(target) << " "
   //      << countNodesSmallerThan(root, target) + 1 << '\n';
   return countNodesSmallerThan(root, target) + 1;
@@ -151,3 +151,90 @@ int BinarySearchTree<T>::rank(NodePtr<T> root, int target) {
 
 // countNodesSmallerThan 은 자신보다 낮은 노드 개수를 세주는 함수
 // Rank는 자신보다 작은 노드 개수 + 1 = rank를 구하는 함수.
+
+/* erase: 노드 삭제 후 depth 반환하기 */
+template <typename T>
+int BinarySearchTree<T>::erase(const T& key) {
+  NodePtr<T> node = IsKey(key);
+  if (node != nullptr) {
+    int depth = this->findDepthByValue(key);
+    eraseNode(this->root_, key);
+    size_--;
+    return depth;
+  } else
+    return 0;
+}
+
+/* eraseNode: 자식 이식 및 후임자를 활용한 실질적인 노드 삭제 수행 */
+template <typename T>
+void BinarySearchTree<T>::eraseNode(NodePtr<T>& root, const T& key) {
+  if (root == nullptr) {
+    return;  // 비어 있다면 넘기기
+  }
+
+  if (key < root->key) {
+    eraseNode(root->left, key);
+  } else if (key > root->key) {
+    eraseNode(root->right, key);
+  } else {
+    if (root->left == nullptr) {
+      transplant(root->right);
+    } else if (root->right == nullptr) {
+      transplant(root->left);
+    } else {
+      NodePtr<T> successor = findSuccessor(root->right);
+      root->key = successor->key;
+      eraseNode(root->right, successor->key);
+    }
+
+    root->height = 1 + max(getHeight(root->left), getHeight(root->right));
+  }
+}
+
+/* Transplant: 자식 노드 이식 함수 */
+template <typename T>
+void BinarySearchTree<T>::transplant(NodePtr<T>& x) {
+  NodePtr<T> temp = x;  // 노드 삭제를 위해 y 사용
+
+  if (x->left == nullptr) {
+    x = x->right;
+  } else if (x->right == nullptr) {
+    x = x->left;
+  } else {
+    NodePtr<T> y = x->right;  // y : 삭제할 x의 다음으로 가장 작은 노드
+    NodePtr<T> parent_y = x;  // y의 부모 노드
+
+    /* 오른쪽 자식중 가장 작은 값 찾기*/
+    while (y->left != nullptr) {
+      parent_y = y;
+      y = y->left;
+    }
+
+    x->key = y->key;  // 후임자과 key값 교환
+
+    /* 오른쪽 자식이 가장 작다면 */
+    if (parent_y == x) {
+      parent_y->right = y->right;  // 오른쪽 자식 붙여주기
+    } else {
+      parent_y->left = y->right;  // 오른쪽 자식의 왼쪽 자식이 있다면
+    }  // 그 후임자의 오른쪽 자식 parent_y의 왼쪽에 붙여주기
+
+    // 이식 후 높이 업데이트
+    parent_y->height =
+        1 + max(getHeight(parent_y->left), getHeight(parent_y->right));
+    x = parent_y;
+  }
+
+  // 메모리를 위해 임시변수 삭제
+  delete temp;
+}
+
+/* findSuccessor: 후임자 찾기 역할 */
+template <typename T>
+NodePtr<T> BinarySearchTree<T>::findSuccessor(const NodePtr<T>& node) {
+  NodePtr<T> current = node;
+  while (current->left != nullptr) {
+    current = current->left;
+  }
+  return current;
+}

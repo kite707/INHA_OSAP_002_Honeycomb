@@ -13,6 +13,10 @@ class AVLTree : public virtual BinarySearchTree<T>, public virtual Adaptor<T> {
   NodePtr<T> recursiveInsert(NodePtr<T> current_node, T item) override;
   int insert(T item) override;
   int getBalanceFactor(NodePtr<T> current_node);
+  int erase(const T& key);
+  void eraseNode(NodePtr<T>& root, const T& key);
+  void transplant(NodePtr<T>& x);
+  NodePtr<T> findSuccessor(const NodePtr<T>& node);
   int find(int item) override {
     return BinarySearchTree<T>::findDepthByValue(item);
   };
