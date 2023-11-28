@@ -1,14 +1,7 @@
 ﻿#ifndef BSTTREE_H_
 #define BSTTREE_H_
 
-/* Node struct */
-template <typename T>
-struct Node {  // clang format apply
-  T key;
-  Node* left = nullptr;
-  Node* right = nullptr;
-  int height = 1;
-};
+#include "tree_node.h"
 
 template <typename T>
 using NodePtr = Node<T>*;
@@ -27,10 +20,10 @@ class BinarySearchTree {
   T minimum(T item);
   T maximum(T item);
   NodePtr<T> getRoot();
-  virtual NodePtr<T> recursiveInsert(NodePtr<T> node, T item);
-  int insert(T item);
-  int countNodesSmallerThan(NodePtr<T> root, T target);
-  int rank(NodePtr<T> root, T target);
+  virtual NodePtr<T> recursiveInsert(NodePtr<T> node, int item);
+  int insert(int item);
+  int countNodesSmallerThan(NodePtr<T> root, int target);
+  int rank(NodePtr<T> root, int target);
   int erase(const T& key);
   void eraseNode(NodePtr<T>& root, const T& key);
   void transplant(NodePtr<T>& x);
