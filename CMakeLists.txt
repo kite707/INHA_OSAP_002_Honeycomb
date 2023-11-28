@@ -26,6 +26,7 @@ add_executable(
   test/set_test.cc
   source/avl_tree.cc
   source/bst_tree.cc
+  source/bst_tree2.cc
   source/set.cc
 )
 target_link_libraries(
