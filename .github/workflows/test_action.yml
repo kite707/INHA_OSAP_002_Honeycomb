@@ -20,6 +20,8 @@ jobs:
         run: |
           cd build
           ./tree_test | tee test_output.txt
+          cd build/CMakeFiles/tree_test.dir/source/
+          ls
 
       - name: Analyze the result of GoogleTest with gcov
         run: |
