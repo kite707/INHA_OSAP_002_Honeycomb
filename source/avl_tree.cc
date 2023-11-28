@@ -9,7 +9,7 @@ AVLTree<T>::AVLTree() : BinarySearchTree<T>(){};  // 자동 초기화
 
 // Insert 함수
 template <typename T>
-NodePtr<T> AVLTree<T>::recursiveInsert(NodePtr<T> current_node, int item) {
+NodePtr<T> AVLTree<T>::recursiveInsert(NodePtr<T> current_node, T item) {
   // leafnode에 도달시 새로운 노드 삽입
   if (current_node == nullptr) {
     NodePtr<T> new_node = new Node<T>;
@@ -39,7 +39,7 @@ NodePtr<T> AVLTree<T>::recursiveInsert(NodePtr<T> current_node, int item) {
 }
 // 값 insert 후 depth리턴하는 함수
 template <typename T>
-int AVLTree<T>::insert(int item) {
+int AVLTree<T>::insert(T item) {
   if (this->IsKey(item)) {
     std::cout << item << " is already exists\n";
     return -1;

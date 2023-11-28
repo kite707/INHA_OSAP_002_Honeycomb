@@ -28,7 +28,7 @@ bool BinarySearchTree<T>::isEmpty() {
 
 /* Return true if any node has item as key value */
 template <typename T>
-NodePtr<T> BinarySearchTree<T>::IsKey(int item) {
+NodePtr<T> BinarySearchTree<T>::IsKey(T item) {
   NodePtr<T> t = this->root_;
 
   /*key값을 찾거나 없다면 break*/
@@ -40,7 +40,7 @@ NodePtr<T> BinarySearchTree<T>::IsKey(int item) {
 
 /* Return depth of the node with item as key */
 template <typename T>
-int BinarySearchTree<T>::findDepthByValue(int item) {
+int BinarySearchTree<T>::findDepthByValue(T item) {
   if (!IsKey(item)) {
     return 0;
   }
@@ -57,7 +57,7 @@ int BinarySearchTree<T>::findDepthByValue(int item) {
 
 /* find min: item보다 작은 값 중 가장 작은 값을 리턴 */
 template <typename T>
-T BinarySearchTree<T>::minimum(int item) {
+T BinarySearchTree<T>::minimum(T item) {
   NodePtr<T> x = IsKey(item);
   while (x->left != nullptr) {
     x = x->left;
@@ -68,7 +68,7 @@ T BinarySearchTree<T>::minimum(int item) {
 
 /* find max */
 template <typename T>
-T BinarySearchTree<T>::maximum(int item) {
+T BinarySearchTree<T>::maximum(T item) {
   NodePtr<T> x = IsKey(item);
   if (x == nullptr) {
     return T{};
@@ -88,7 +88,7 @@ NodePtr<T> BinarySearchTree<T>::getRoot() {
 
 /* insert helper function to use in main.cc*/
 template <typename T>
-int BinarySearchTree<T>::insert(int item) {
+int BinarySearchTree<T>::insert(T item) {
   if (IsKey(item)) {
     cout << item << " is already exists\n";
     return -1;
@@ -100,7 +100,7 @@ int BinarySearchTree<T>::insert(int item) {
 
 /* insert a node in bst tree*/
 template <typename T>
-NodePtr<T> BinarySearchTree<T>::recursiveInsert(NodePtr<T> node, int item) {
+NodePtr<T> BinarySearchTree<T>::recursiveInsert(NodePtr<T> node, T item) {
   if (node == nullptr) {
     NodePtr<T> z = new Node<T>;
     z->key = item;
@@ -125,7 +125,7 @@ int BinarySearchTree<T>::getHeight(NodePtr<T> current_node) {
 }
 
 template <typename T>
-int BinarySearchTree<T>::countNodesSmallerThan(NodePtr<T> root, int target) {
+int BinarySearchTree<T>::countNodesSmallerThan(NodePtr<T> root, T target) {
   if (root == nullptr) {
     return 0;
   }
@@ -143,7 +143,7 @@ int BinarySearchTree<T>::countNodesSmallerThan(NodePtr<T> root, int target) {
 }
 
 template <typename T>
-int BinarySearchTree<T>::rank(NodePtr<T> root, int target) {
+int BinarySearchTree<T>::rank(NodePtr<T> root, T target) {
   // cout << findDepthByValue(target) << " "
   //      << countNodesSmallerThan(root, target) + 1 << '\n';
   return countNodesSmallerThan(root, target) + 1;

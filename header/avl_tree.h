@@ -9,8 +9,8 @@ template <typename T>
 class AVLTree : public BinarySearchTree<T> {
  public:
   AVLTree();
-  NodePtr<T> recursiveInsert(NodePtr<T> current_node, int item) override;
-  int insert(int item);
+  NodePtr<T> recursiveInsert(NodePtr<T> current_node, T item) override;
+  int insert(T item);
   int getBalanceFactor(NodePtr<T> current_node);
   int erase(const T& key);
   void eraseNode(NodePtr<T>& root, const T& key);
