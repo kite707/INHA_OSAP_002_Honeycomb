@@ -194,38 +194,39 @@ void BinarySearchTree<T>::eraseNode(NodePtr<T>& root, const T& key) {
 /* Transplant: 자식 노드 이식 함수 */
 template <typename T>
 void BinarySearchTree<T>::transplant(NodePtr<T>& x) {
-  NodePtr<T> y = x;  // 노드 삭제를 위해 y 사용
+  NodePtr<T> temp = x;  // 노드 삭제를 위해 y 사용
 
   if (x->left == nullptr) {
     x = x->right;
   } else if (x->right == nullptr) {
     x = x->left;
   } else {
-    NodePtr<T> z = x->right;  // z : 삭제할 x의 다음으로 가장 작은 수
-    NodePtr<T> pZ = x;        // p[z] : z의 부모 노드
+    NodePtr<T> y = x->right;  // y : 삭제할 x의 다음으로 가장 작은 노드
+    NodePtr<T> parent_y = x;  // y의 부모 노드
 
     /* 오른쪽 자식중 가장 작은 값 찾기*/
-    while (z->left != nullptr) {
-      pZ = z;
-      z = z->left;
+    while (y->left != nullptr) {
+      parent_y = y;
+      y = y->left;
     }
 
-    x->key = z->key;  // successor과 key값 교환
+    x->key = y->key;  // 후임자과 key값 교환
 
     /* 오른쪽 자식이 가장 작다면 */
-    if (pZ == x) {
-      pZ->right = z->right;  // z의 오른쪽 자식 붙여주기
+    if (parent_y == x) {
+      parent_y->right = y->right;  // 오른쪽 자식 붙여주기
     } else {
-      pZ->left = z->right;  // 오른쪽 자식의 왼쪽 자식이 있다면
-    }  // 그 z(successor)의 오른쪽 자식 p[z]의 왼쪽에 붙여주기
+      parent_y->left = y->right;  // 오른쪽 자식의 왼쪽 자식이 있다면
+    }  // 그 후임자의 오른쪽 자식 parent_y의 왼쪽에 붙여주기
 
     // 이식 후 높이 업데이트
-    pZ->height = 1 + max(getHeight(pZ->left), getHeight(pZ->right));
-    x = pZ;
+    parent_y->height =
+        1 + max(getHeight(parent_y->left), getHeight(parent_y->right));
+    x = parent_y;
   }
 
-  // y를 삭제
-  delete y;
+  // 메모리를 위해 임시변수 삭제
+  delete temp;
 }
 
 /* findSuccessor: 후임자 찾기 역할 */
