@@ -20,10 +20,10 @@ class BinarySearchTree {
   T minimum(T item);
   T maximum(T item);
   NodePtr<T> getRoot();
-  virtual NodePtr<T> recursiveInsert(NodePtr<T> node, int item);
-  int insert(int item);
-  int countNodesSmallerThan(NodePtr<T> root, int target);
-  int rank(NodePtr<T> root, int target);
+  virtual NodePtr<T> recursiveInsert(NodePtr<T> node, T item);
+  int insert(T item);
+  int countNodesSmallerThan(NodePtr<T> root, T target);
+  int rank(NodePtr<T> root, T target);
   int erase(const T& key);
   void eraseNode(NodePtr<T>& root, const T& key);
   void transplant(NodePtr<T>& x);
