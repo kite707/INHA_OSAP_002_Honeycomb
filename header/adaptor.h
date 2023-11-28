@@ -1,7 +1,7 @@
 #ifndef ADAPTOR_H_
 #define ADAPTOR_H_
 
-template <typename T>
+template <typename T>  //
 class Adaptor {
  public:
   virtual ~Adaptor() = default;
