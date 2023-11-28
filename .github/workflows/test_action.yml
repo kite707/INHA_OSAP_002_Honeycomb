@@ -27,6 +27,7 @@ jobs:
         run: |
           gcov build/CMakeFiles/tree_test.dir/source/avl_tree.cc.gcno
           gcov build/CMakeFiles/tree_test.dir/source/bst_tree.cc.gcno
+          gcov build/CMakeFiles/tree_test.dir/source/bst_tree2.cc.gcno
           gcov build/CMakeFiles/tree_test.dir/source/set.cc.gcno
           gcov build/CMakeFiles/tree_test.dir/source/main.cc.gcno
 
