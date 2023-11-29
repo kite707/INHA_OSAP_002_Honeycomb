@@ -28,6 +28,14 @@ add_executable(
   source/bst_tree.cc
   source/set.cc
 )
+
+add_executable(
+  main.out
+  source/main.cc
+  source/avl_tree.cc
+  source/bst_tree.cc
+  source/set.cc
+)
 target_link_libraries(
   tree_test
   GTest::gtest_main
