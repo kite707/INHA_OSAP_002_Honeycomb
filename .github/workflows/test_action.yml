@@ -23,32 +23,6 @@ jobs:
           cd CMakeFiles/tree_test.dir/source/
           ls
 
-      - name: Analyze the result of GoogleTest with gcov
-        run: |
-          gcov build/CMakeFiles/tree_test.dir/source/avl_tree.cc.gcno
-          gcov build/CMakeFiles/tree_test.dir/source/bst_tree.cc.gcno
-          gcov build/CMakeFiles/tree_test.dir/source/bst_tree2.cc.gcno
-          gcov build/CMakeFiles/tree_test.dir/source/set.cc.gcno
-          gcov build/CMakeFiles/tree_test.dir/source/main.cc.gcno
-
-      - name: Install lcov and generate html file with lcov
-        run: |
-          sudo apt-get install lcov
-          lcov --directory build/CMakeFiles/tree_test.dir/source --capture --output-file app.info
-          lcov --remove app.info '*/usr/include/*' '*googletest*' 'Mock*' 'UT*' '*aivc-macchina/platform/*' --output-file final.info --ignore-errors empty
-          genhtml -o cov_html final.info
-
-      - name: zip files
-        run: |
-          ls
-          tar czvf cov_html.tar.gz cov_html
-
-      - name: Archive code coverage results
-        uses: actions/upload-artifact@v3
-        with:
-          name: code-coverage-report
-          path: cov_html.tar.gz
-
       - name: PR comment with file
         if: always()
         uses: thollander/actions-comment-pull-request@v2
