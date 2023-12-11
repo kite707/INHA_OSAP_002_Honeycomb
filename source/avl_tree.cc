@@ -28,6 +28,7 @@
 //     2023.11 HONEYCOMB
 
 #include "../header/avl_tree.h"
+#include <iostream>
 #include "../header/bst_tree.h"
 #include "algorithm"
 using namespace std;
@@ -155,13 +156,16 @@ void AVLTree<T>::balancing(NodePtr<T>& current_node, T item) {
 /* erase: 노드 삭제 후 depth 반환하기 */
 template <typename T>
 int AVLTree<T>::erase(const T& key) {
+  cout << "erase in AVLTree called\n";
   NodePtr<T> node = this->IsKey(key);
   if (node != nullptr) {
     int depth = this->findDepthByValue(key);
     eraseNode(this->root_, key);
     this->size_ = this->size_ - 1;
+    cout << "return depth\n";
     return depth;
   } else {
+    cout << "return depth 0\n";
     return 0;
   }
 }
@@ -169,6 +173,7 @@ int AVLTree<T>::erase(const T& key) {
 /* eraseNode: 실질적인 노드 삭제 수행 */
 template <typename T>
 void AVLTree<T>::eraseNode(NodePtr<T>& root, const T& key) {
+  cout << "eraseNode in AVLTree called \n";
   if (root == nullptr) {
     return;  // 비어 있다면 넘기기
   }

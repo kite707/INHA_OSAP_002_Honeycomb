@@ -29,13 +29,22 @@
 
 #ifndef SET_H_
 #define SET_H_
+#include "adaptor.h"
 
-struct node {
-  int key;
-  node* left = nullptr;
-  node* right = nullptr;
-  int height = 1;
+template <typename T>
+class Set {
+ public:
+  Set(Adaptor<T>* adaptor);
+  ~Set() { delete adaptor_; }
+
+  void insert(T value);
+  int find(T value);
+  int size();
+  bool empty();
+  T maximum(T value);
+  T minimum(T value);
+
+ private:
+  Adaptor<T>* adaptor_;
 };
-typedef node* NodePtr;
-
 #endif

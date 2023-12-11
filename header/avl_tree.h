@@ -52,7 +52,7 @@ class AVLTree : public virtual BinarySearchTree<T>, public virtual Adaptor<T> {
   T minimum(T item) override { return BinarySearchTree<T>::minimum(item); }
   T maximum(T item) override { return BinarySearchTree<T>::maximum(item); }
   int size() override { return BinarySearchTree<T>::getSize(); }
-  bool empty() override { return BinarySearchTree<T>::isEmpty(); };
+  bool empty() override { return BinarySearchTree<T>::isEmpty(); }
 
  protected:
   // 가운데 노드 기준 왼쪽 회전
