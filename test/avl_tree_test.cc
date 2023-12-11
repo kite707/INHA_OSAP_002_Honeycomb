@@ -140,3 +140,22 @@ TEST_F(AvlTreeTestFixture, eraseTest) {
     cout << "에러: 키가 존재하지 않음\n";
   }
 }
+
+TEST_F(AvlTreeTestFixture, RotateLeftTest) {
+  // insert(3)
+  //   2
+  //  / \
+  // 1   3
+  avl_.insert(3);
+
+  // roateLeft()
+  //     3
+  //    /
+  //   2
+  //  /
+  // 1
+  avl_.setRoot(avl_.rotateLeft(avl_.getRoot()));
+
+  cout << "key 3's leftchild :" << avl_.IsKey(3)->left->key << '\n';
+  ASSERT_EQ(2, this->avl_.IsKey(3)->left->key);
+}

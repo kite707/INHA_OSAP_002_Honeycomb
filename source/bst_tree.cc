@@ -268,3 +268,8 @@ NodePtr<T> BinarySearchTree<T>::findSuccessor(const NodePtr<T>& node) {
   }
   return current;
 }
+
+template <typename T>
+void BinarySearchTree<T>::setRoot(const NodePtr<T>& node) {
+  this->root_ = node;
+}
