@@ -26,16 +26,31 @@
 //     OTHER DEALINGS IN THE SOFTWARE.
 //
 //     2023.11 HONEYCOMB
-
 #include <iostream>
 #include "../header/adaptor.h"
 #include "../header/avl_tree.h"
 #include "../header/bst_tree.h"
+#include "../header/set.h"
 #include "../source/avl_tree.cc"
 #include "../source/bst_tree.cc"
+#include "../source/set.cc"
 using namespace std;
 
 int main() {
+  Adaptor<int>* adaptor = new AVLTree<int>;
+  Set<int> set(adaptor);
+  set.insert(1);
+  set.insert(2);
+  set.insert(3);
+  set.insert(4);
+  set.find(4);
+  set.size();
+  set.empty();
+  set.maximum(2);
+  set.minimum(2);
+  set.size();
+
+  /* Adaptor insert
   Adaptor<int>* ad = new AVLTree<int>;
   ad->insert(1);
   ad->insert(2);
@@ -45,6 +60,7 @@ int main() {
   cout << ad->find(4) << endl;
   cout << ad->empty() << endl;
   cout << ad->size() << endl;
+  */
   /*AVLTree<int> avl;
   Node<int>* root = nullptr;
   root = avl.Insert(root, 42);

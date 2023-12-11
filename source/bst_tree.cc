@@ -184,6 +184,7 @@ int BinarySearchTree<T>::rank(NodePtr<T> root, T target) {
 /* erase: 노드 삭제 후 depth 반환하기 */
 template <typename T>
 int BinarySearchTree<T>::erase(const T& key) {
+  cout << "erase in BSTTree called \n";
   NodePtr<T> node = IsKey(key);
   if (node != nullptr) {
     int depth = this->findDepthByValue(key);
