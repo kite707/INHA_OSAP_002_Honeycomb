@@ -1,6 +1,88 @@
 ﻿#include "../header/set.h"
 #include <gtest/gtest.h>
+#include <iostream>
+#include "../header/adaptor.h"
+#include "../header/avl_tree.h"
+#include "../source/avl_tree.cc"
+#include "../source/set.cc"
 
-TEST(SET, set_Test) {
-  EXPECT_EQ(2 * 4, 8);
+class SetParametrizedTestFixture
+    : public ::testing::TestWithParam<std::tuple<int, int>> {
+ public:
+  void SetUp() override;
+  void TearDown() override{};
+
+ protected:
+  Set<int>* set;
+};
+
+// setUp main에서와 같이 adaptor를 이용해서 new AVLTree 생성
+void SetParametrizedTestFixture::SetUp() {
+  Adaptor<int>* adaptor = new AVLTree<int>;
+  set = new Set<int>(adaptor);
+  cout << "SetUp" << '\n';
+  set->insert(1);
+  set->insert(5);
+
+  // 초기 상태
+  //     1
+  //      \
+  //       5
 }
+
+TEST_P(SetParametrizedTestFixture, InsertTest) {
+  std::tuple<int, int> tuple = GetParam();
+
+  // tuple에서 첫번째 값은 insert에 들어갈 변수 값, 
+  // 두 번째 값은 예상되는 depth값
+  int param = std::get<0>(tuple);
+  int expected_value = std::get<1>(tuple);
+
+  std::cout << "insert 값 : " << param
+            << " 예상되는 depth 값 = " << expected_value << '\n';
+
+  set->insert(param);
+  // 실제 depth값
+  int actual_value = set->find(param);
+  std::cout << "실제 depth 값 : " << actual_value << '\n';
+
+  ASSERT_EQ(expected_value, actual_value);
+}
+
+INSTANTIATE_TEST_CASE_P(InsertTest,
+                        SetParametrizedTestFixture,
+                        ::testing::Values(std::make_tuple(2, 0),
+                                          std::make_tuple(3, 0),
+                                          std::make_tuple(4, 0),
+                                          std::make_tuple(6, 1)));
+/*
+TEST_P(SetParametrizedTestFixture, FindTest) {
+  std::tuple<int, int> tuple = GetParam();
+
+  set->insert(6);
+  // 상태
+  //      5
+  //     / \
+  //    1   6
+
+  // tuple에서 첫번째 값은 insert에 들어갈 변수 값, 
+  // 두 번째 값은 예상되는 depth값
+  int param = std::get<0>(tuple);
+  int expected_value = std::get<1>(tuple);
+
+  std::cout << "depth 찾아볼 key값 : " << param
+            << " 예상되는 depth 값 = " << expected_value << '\n';
+  
+  // 실제 depth값
+  int actual_value = set->find(param);
+  std::cout << "실제 depth 값 : " << actual_value << '\n';
+
+  ASSERT_EQ(expected_value, actual_value);
+}
+
+INSTANTIATE_TEST_CASE_P(FindTest,
+                        SetParametrizedTestFixture,
+                        ::testing::Values(std::make_tuple(1, 1),
+                                          std::make_tuple(5, 0),
+                                          std::make_tuple(6, 1)));
+                                          */

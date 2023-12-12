@@ -43,7 +43,9 @@ void Set<T>::insert(T value) {
 
 template <typename T>
 int Set<T>::find(T value) {
-  cout << adaptor_->find(value) << '\n';
+  int result = adaptor_->find(value);
+  cout << result << '\n';
+  return result;
 }
 
 template <typename T>
