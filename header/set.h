@@ -43,6 +43,8 @@ class Set {
   bool empty();
   T maximum(T value);
   T minimum(T value);
+  int erase(T value);
+  int rank(T value);
 
  private:
   Adaptor<T>* adaptor_;

@@ -37,32 +37,47 @@
 using namespace std;
 
 int main() {
-  Adaptor<int>* adaptor = new AVLTree<int>;
-  Set<int> set(adaptor);
-  set.insert(1);
-  set.insert(2);
-  set.insert(3);
-  set.insert(4);
-  set.find(4);
-  set.size();
-  set.empty();
-  set.maximum(2);
-  set.minimum(2);
-  set.size();
-
-  /* Adaptor insert
-  Adaptor<int>* ad = new AVLTree<int>;
-  ad->insert(1);
-  ad->insert(2);
-  ad->insert(3);
-  ad->insert(4);
-  cout << ad->find(1) << endl;
-  cout << ad->find(4) << endl;
-  cout << ad->empty() << endl;
-  cout << ad->size() << endl;
-  */
-  /*AVLTree<int> avl;
-  Node<int>* root = nullptr;
-  root = avl.Insert(root, 42);
-  cout << root->key << endl;*/
+  int T;
+  cin >> T;
+  while (T--) {
+    int Q;
+    cin >> Q;
+    Adaptor<int>* adaptor = new AVLTree<int>;
+    Set<int> set(adaptor);
+    string s;
+    int n;
+    for (int i = 0; i < Q; i++) {
+      cin >> s;
+      if (s == "insert") {
+        cin >> n;
+        set.insert(n);
+      }
+      if (s == "find") {
+        cin >> n;
+        set.find(n);
+      }
+      if (s == "minimum") {
+        cin >> n;
+        set.minimum(n);
+      }
+      if (s == "maximum") {
+        cin >> n;
+        set.maximum(n);
+      }
+      if (s == "empty") {
+        set.empty();
+      }
+      if (s == "size") {
+        set.size();
+      }
+      if (s == "rank") {
+        cin >> n;
+        set.rank(n);
+      }
+      if (s == "erase") {
+        cin >> n;
+        set.erase(n);
+      }
+    }
+  }
 }

@@ -91,8 +91,7 @@ T BinarySearchTree<T>::minimum(T item) {
   while (x->left != nullptr) {
     x = x->left;
   }
-  cout << x->key << " " << findDepthByValue(x->key) << "\n";
-  return x->key;  // 최솟값 출력 뿐만 아니라 값을 리턴하도록 수정
+  return x->key;
 }
 
 /* find max */
@@ -105,7 +104,6 @@ T BinarySearchTree<T>::maximum(T item) {
   while (x->right != nullptr) {
     x = x->right;
   }
-  cout << x->key << " " << findDepthByValue(x->key) << "\n";
   return x->key;
 }
 
@@ -173,8 +171,6 @@ int BinarySearchTree<T>::countNodesSmallerThan(NodePtr<T> root, T target) {
 
 template <typename T>
 int BinarySearchTree<T>::rank(NodePtr<T> root, T target) {
-  // cout << findDepthByValue(target) << " "
-  //      << countNodesSmallerThan(root, target) + 1 << '\n';
   return countNodesSmallerThan(root, target) + 1;
 }
 
@@ -184,7 +180,6 @@ int BinarySearchTree<T>::rank(NodePtr<T> root, T target) {
 /* erase: 노드 삭제 후 depth 반환하기 */
 template <typename T>
 int BinarySearchTree<T>::erase(const T& key) {
-  cout << "erase in BSTTree called \n";
   NodePtr<T> node = IsKey(key);
   if (node != nullptr) {
     int depth = this->findDepthByValue(key);
