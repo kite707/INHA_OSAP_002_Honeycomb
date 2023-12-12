@@ -25,7 +25,7 @@ class SetParametrizedTestFixture
   Set<int>* set;
 };
 
-/*
+
 class SetFixture : public testing::Test {
  public:
   void SetUp() override;
@@ -33,7 +33,7 @@ class SetFixture : public testing::Test {
 
  protected:
   Set<int>* set;
-}
+};
 
 // setUp main에서와 같이 adaptor를 이용해서 new AVLTree 생성
 void SetFixture::SetUp() {
@@ -48,7 +48,15 @@ void SetFixture::SetUp() {
   //      \
   //       5
 }
-*/
+
+TEST_F(SetFixture, SetFind) {
+// 초기 상태
+  //     1
+  //      \
+  //       5
+ ASSERT_EQ(0, set->find(1));
+ ASSERT_EQ(1, set->find(5));
+}
 
 // setUp main에서와 같이 adaptor를 이용해서 new AVLTree 생성
 void SetParametrizedTestFixture::SetUp() {
