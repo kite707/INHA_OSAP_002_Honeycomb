@@ -84,8 +84,34 @@ TEST_F(SetFixture, SetMaximum) {
   //       5
  ASSERT_EQ(5, set->maximum(1));
  set->insert(6);
+  //     5
+  //    / \
+  //   1   6
  ASSERT_EQ(6, set->maximum(5));
 }
+
+TEST_F(SetFixture, SetMinimum) {
+// 초기 상태
+  //     1
+  //      \
+  //       5
+ ASSERT_EQ(1, set->minimum(1));
+  //     5
+  //    / \
+  //   1   6
+ set->insert(6);
+ ASSERT_EQ(1, set->minimum(5));
+  //     5
+  //    / \
+  //   1   7
+  //      / \
+  //     6   8
+ set->insert(8);
+ set->insert(7);
+ ASSERT_EQ(1, set->minimum(5));
+ ASSERT_EQ(6, set->minimum(7));
+}
+
 
 // setUp main에서와 같이 adaptor를 이용해서 new AVLTree 생성
 void SetParametrizedTestFixture::SetUp() {
