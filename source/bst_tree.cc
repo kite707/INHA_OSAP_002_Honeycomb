@@ -91,7 +91,7 @@ T BinarySearchTree<T>::minimum(T item) {
   while (x->left != nullptr) {
     x = x->left;
   }
-  return x->key;  
+  return x->key;
 }
 
 /* find max */
