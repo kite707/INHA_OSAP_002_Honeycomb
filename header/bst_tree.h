@@ -57,6 +57,7 @@ class BinarySearchTree {
   void eraseNode(NodePtr<T>& root, const T& key);
   void transplant(NodePtr<T>& x);
   NodePtr<T> findSuccessor(const NodePtr<T>& node);
+  void setRoot(const NodePtr<T>& node);
 
  protected:
   // pointer of root node
