@@ -66,12 +66,14 @@ template <typename T>
 T Set<T>::maximum(T value) {
   T maximumValue = adaptor_->maximum(value);
   cout << maximumValue << " " << adaptor_->find(maximumValue) << "\n";
+  return maximumValue;
 }
 
 template <typename T>
 T Set<T>::minimum(T value) {
   T minimumValue = adaptor_->minimum(value);
   cout << minimumValue << " " << adaptor_->find(minimumValue) << "\n";
+  return minimumValue;
 }
 
 template <typename T>

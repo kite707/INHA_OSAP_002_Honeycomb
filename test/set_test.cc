@@ -77,6 +77,16 @@ TEST_F(SetFixture, SetEmpty) {
  ASSERT_EQ(0, set->empty());
 }
 
+TEST_F(SetFixture, SetMaximum) {
+// 초기 상태
+  //     1
+  //      \
+  //       5
+ ASSERT_EQ(5, set->maximum(1));
+ set->insert(6);
+ ASSERT_EQ(6, set->maximum(5));
+}
+
 // setUp main에서와 같이 adaptor를 이용해서 new AVLTree 생성
 void SetParametrizedTestFixture::SetUp() {
   Adaptor<int>* adaptor = new AVLTree<int>;
