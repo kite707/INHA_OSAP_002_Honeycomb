@@ -156,16 +156,13 @@ void AVLTree<T>::balancing(NodePtr<T>& current_node, T item) {
 /* erase: 노드 삭제 후 depth 반환하기 */
 template <typename T>
 int AVLTree<T>::erase(const T& key) {
-  cout << "erase in AVLTree called\n";
   NodePtr<T> node = this->IsKey(key);
   if (node != nullptr) {
     int depth = this->findDepthByValue(key);
     eraseNode(this->root_, key);
     this->size_ = this->size_ - 1;
-    cout << "return depth\n";
     return depth;
   } else {
-    cout << "return depth 0\n";
     return 0;
   }
 }
@@ -173,36 +170,42 @@ int AVLTree<T>::erase(const T& key) {
 /* eraseNode: 실질적인 노드 삭제 수행 */
 template <typename T>
 void AVLTree<T>::eraseNode(NodePtr<T>& root, const T& key) {
-  cout << "eraseNode in AVLTree called \n";
-  if (root == nullptr) {
-    return;  // 비어 있다면 넘기기
-  }
-
-  if (key < root->key) {
+  if (key < root->key && root->left != nullptr) {
     eraseNode(root->left, key);
-  } else if (key > root->key) {
+  } else if (key > root->key && root->right != nullptr) {
     eraseNode(root->right, key);
-  } else {
-    if (root->left == nullptr) {
-      transplant(root->right);
-    } else if (root->right == nullptr) {
-      transplant(root->left);
-    } else {
-      NodePtr<T> successor = findSuccessor(root->right);
-      root->key = successor->key;
-      eraseNode(root->right, successor->key);
-    }
-
+  } else if (root->key == key) {
+    transplant(root);
+  }
+  if (root != nullptr) {
     root->height =
         1 + max(this->getHeight(root->left), this->getHeight(root->right));
+    if (getBalanceFactor(root) == 2 && getBalanceFactor(root->left) == 1) {
+      root = rotateRight(root);
+    } else if (getBalanceFactor(root) == 2 &&
+               getBalanceFactor(root->left) == -1) {
+      root->left = rotateLeft(root->left);
+      root = rotateRight(root);
+    } else if (getBalanceFactor(root) == 2 &&
+               getBalanceFactor(root->left) == 0) {
+      root = rotateRight(root);
+    } else if (getBalanceFactor(root) == -2 &&
+               getBalanceFactor(root->right) == -1) {
+      root = rotateLeft(root);
+    } else if (getBalanceFactor(root) == -2 &&
+               getBalanceFactor(root->right) == 1) {
+      root->right = rotateRight(root->right);
+      root = rotateLeft(root);
+    } else if (getBalanceFactor(root) == -2 &&
+               getBalanceFactor(root->right) == 0) {
+      root = rotateRight(root);
+    }
   }
 }
 
 /* Transplant: 자식 노드 이식 함수 */
 template <typename T>
 void AVLTree<T>::transplant(NodePtr<T>& x) {
-  NodePtr<T> y = x;  // 노드 삭제를 위해 y 사용
-
   if (x->left == nullptr) {
     x = x->right;
   } else if (x->right == nullptr) {
@@ -212,11 +215,7 @@ void AVLTree<T>::transplant(NodePtr<T>& x) {
     NodePtr<T> pZ = x;        // p[z] : z의 부모 노드
 
     /* 오른쪽 자식중 가장 작은 값 찾기*/
-    while (z->left != nullptr) {
-      pZ = z;
-      z = z->left;
-    }
-
+    z = findSuccessor(z);
     x->key = z->key;  // successor과 key값 교환
 
     /* 오른쪽 자식이 가장 작다면 */
@@ -229,8 +228,6 @@ void AVLTree<T>::transplant(NodePtr<T>& x) {
     // 이식 후 높이 업데이트
     pZ->height = 1 + max(this->getHeight(pZ->left), this->getHeight(pZ->right));
     x = pZ;
-
-    delete y;  // 메모리 해제
   }
 }
 
