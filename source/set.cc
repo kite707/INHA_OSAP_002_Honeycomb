@@ -57,7 +57,9 @@ int Set<T>::size() {
 
 template <typename T>
 bool Set<T>::empty() {
-  cout << adaptor_->empty() << '\n';
+  bool boolean_empty = adaptor_->empty();
+  cout << boolean_empty << '\n';
+  return boolean_empty;
 }
 
 template <typename T>
