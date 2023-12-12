@@ -15,6 +15,7 @@ TEST(SetTest, ConstructorTest) {
   ASSERT_EQ(0, size);
 }
 
+// 매개변수화 테스트 클래스
 class SetParametrizedTestFixture
     : public ::testing::TestWithParam<std::tuple<int, int>> {
  public:
@@ -25,7 +26,7 @@ class SetParametrizedTestFixture
   Set<int>* set;
 };
 
-
+// Fixture 테스트 클래스
 class SetFixture : public testing::Test {
  public:
   void SetUp() override;
@@ -49,69 +50,71 @@ void SetFixture::SetUp() {
   //       5
 }
 
+// find test
 TEST_F(SetFixture, SetFind) {
-// 초기 상태
+  // 초기 상태
   //     1
   //      \
   //       5
- ASSERT_EQ(0, set->find(1));
- ASSERT_EQ(1, set->find(5));
+  ASSERT_EQ(0, set->find(1));
+  ASSERT_EQ(1, set->find(5));
 }
 
 TEST_F(SetFixture, SetSize) {
-// 초기 상태
+  // 초기 상태
   //     1
   //      \
   //       5
- ASSERT_EQ(2, set->size());
- set->insert(3);
- ASSERT_EQ(3, set->size());
+  ASSERT_EQ(2, set->size());
+  set->insert(3);
+  ASSERT_EQ(3, set->size());
 }
 
-
+// empty test
 TEST_F(SetFixture, SetEmpty) {
-// 초기 상태
+  // 초기 상태
   //     1
   //      \
   //       5
- ASSERT_EQ(0, set->empty());
+  ASSERT_EQ(0, set->empty());
 }
 
+// maximum test
 TEST_F(SetFixture, SetMaximum) {
-// 초기 상태
+  // 초기 상태
   //     1
   //      \
   //       5
- ASSERT_EQ(5, set->maximum(1));
- set->insert(6);
+  ASSERT_EQ(5, set->maximum(1));
+  set->insert(6);
   //     5
   //    / \
   //   1   6
- ASSERT_EQ(6, set->maximum(5));
+  ASSERT_EQ(6, set->maximum(5));
 }
 
+// minimum test
 TEST_F(SetFixture, SetMinimum) {
-// 초기 상태
+  // 초기 상태
   //     1
   //      \
   //       5
- ASSERT_EQ(1, set->minimum(1));
+  ASSERT_EQ(1, set->minimum(1));
   //     5
   //    / \
   //   1   6
- set->insert(6);
- ASSERT_EQ(1, set->minimum(5));
+  set->insert(6);
+  ASSERT_EQ(1, set->minimum(5));
   //     5
   //    / \
   //   1   7
   //      / \
   //     6   8
- set->insert(8);
- set->insert(7);
- ASSERT_EQ(1, set->minimum(5));
- ASSERT_EQ(6, set->minimum(7));
+  set->insert(8);
+  set->insert(7);
+  ASSERT_EQ(1, set->minimum(5));
+  ASSERT_EQ(6, set->minimum(7));
 }
-
 
 // setUp main에서와 같이 adaptor를 이용해서 new AVLTree 생성
 void SetParametrizedTestFixture::SetUp() {
