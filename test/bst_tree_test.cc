@@ -26,7 +26,6 @@ BinaryTreeTestFixture::~BinaryTreeTestFixture() {}
 /* SetUp */
 void BinaryTreeTestFixture::SetUp() {
   int items[] = {1, 6, 5, 10, 7, 14, 21};
-  NodePtr<int> root = nullptr;
   for (const int item : items) {
     bst_.insert(item);
   }
