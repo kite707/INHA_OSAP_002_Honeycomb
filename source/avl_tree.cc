@@ -211,13 +211,14 @@ void AVLTree<T>::transplant(NodePtr<T>& x) {
   } else if (x->right == nullptr) {
     x = x->left;
   } else {
-    NodePtr<T> z = x->right;  // z : 삭제할 x의 다음으로 가장 작은 수
-    NodePtr<T> pZ = x;        // p[z] : z의 부모 노드
+    NodePtr<T> z = x->right;  // z : 삭제할 x보다 큰 수들 중 가장 작은 수
+    NodePtr<T> pZ = x;
 
-    /* 오른쪽 자식중 가장 작은 값 찾기*/
-    z = findSuccessor(z);
+    while (z->left != nullptr) {
+      pZ = z;
+      z = z->left;
+    }
     x->key = z->key;  // successor과 key값 교환
-
     /* 오른쪽 자식이 가장 작다면 */
     if (pZ == x) {
       pZ->right = z->right;  // z의 오른쪽 자식 붙여주기
@@ -227,16 +228,5 @@ void AVLTree<T>::transplant(NodePtr<T>& x) {
 
     // 이식 후 높이 업데이트
     pZ->height = 1 + max(this->getHeight(pZ->left), this->getHeight(pZ->right));
-    x = pZ;
   }
-}
-
-/* findSuccessor: 후임자 찾기 역할 */
-template <typename T>
-NodePtr<T> AVLTree<T>::findSuccessor(const NodePtr<T>& node) {
-  NodePtr<T> current = node;
-  while (current->left != nullptr) {
-    current = current->left;
-  }
-  return current;
 }
