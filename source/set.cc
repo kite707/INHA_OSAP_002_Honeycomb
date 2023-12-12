@@ -77,6 +77,11 @@ int Set<T>::erase(T value) {
 
 template <typename T>
 int Set<T>::rank(T value) {
-  cout << adaptor_->find(value) << " " << adaptor_->rank(value) << "\n";
+  int depth = adaptor_->find(value);
+  if (depth == 0) {
+    cout << depth << "\n";
+    return depth;
+  }
+  cout << depth << " " << adaptor_->rank(value) << "\n";
   return adaptor_->rank(value);
 }
