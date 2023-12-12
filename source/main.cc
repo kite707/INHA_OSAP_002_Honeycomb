@@ -48,7 +48,15 @@ int main() {
   set.empty();
   set.maximum(2);
   set.minimum(2);
+  cout << "ttt" << endl;
   set.size();
+  set.erase(2);
+  set.find(1);
+  set.find(3);
+  set.find(4);
+  set.size();
+  cout << "ttt" << endl;
+  set.rank(3);
 
   /* Adaptor insert
   Adaptor<int>* ad = new AVLTree<int>;
