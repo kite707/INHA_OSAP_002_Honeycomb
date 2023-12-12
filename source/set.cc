@@ -50,7 +50,9 @@ int Set<T>::find(T value) {
 
 template <typename T>
 int Set<T>::size() {
-  cout << adaptor_->size() << '\n';
+  int size = adaptor_->size();
+  cout << size << '\n';
+  return size;
 }
 
 template <typename T>
