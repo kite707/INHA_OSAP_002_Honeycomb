@@ -40,5 +40,7 @@ class Adaptor {
   virtual int size() = 0;
   virtual int find(T value) = 0;
   virtual int insert(T value) = 0;
+  virtual int erase(const T& key) = 0;
+  virtual int rank(T target) = 0;
 };
 #endif
