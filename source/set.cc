@@ -58,12 +58,14 @@ bool Set<T>::empty() {
 
 template <typename T>
 T Set<T>::maximum(T value) {
-  adaptor_->maximum(value);
+  T maximumValue = adaptor_->maximum(value);
+  cout << maximumValue << " " << adaptor_->find(maximumValue) << "\n";
 }
 
 template <typename T>
 T Set<T>::minimum(T value) {
-  adaptor_->minimum(value);
+  T minimumValue = adaptor_->minimum(value);
+  cout << minimumValue << " " << adaptor_->find(minimumValue) << "\n";
 }
 
 template <typename T>
