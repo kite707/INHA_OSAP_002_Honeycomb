@@ -43,29 +43,37 @@ void Set<T>::insert(T value) {
 
 template <typename T>
 int Set<T>::find(T value) {
-  cout << adaptor_->find(value) << '\n';
+  int result = adaptor_->find(value);
+  cout << result << '\n';
+  return result;
 }
 
 template <typename T>
 int Set<T>::size() {
-  cout << adaptor_->size() << '\n';
+  int size = adaptor_->size();
+  cout << size << '\n';
+  return size;
 }
 
 template <typename T>
 bool Set<T>::empty() {
-  cout << adaptor_->empty() << '\n';
+  bool boolean_empty = adaptor_->empty();
+  cout << boolean_empty << '\n';
+  return boolean_empty;
 }
 
 template <typename T>
 T Set<T>::maximum(T value) {
   T maximumValue = adaptor_->maximum(value);
   cout << maximumValue << " " << adaptor_->find(maximumValue) << "\n";
+  return maximumValue;
 }
 
 template <typename T>
 T Set<T>::minimum(T value) {
   T minimumValue = adaptor_->minimum(value);
   cout << minimumValue << " " << adaptor_->find(minimumValue) << "\n";
+  return minimumValue;
 }
 
 template <typename T>
