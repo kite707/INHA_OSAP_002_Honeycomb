@@ -1,4 +1,12 @@
-# Docker에서 프로젝트 실행
+# Main Repository
+You can see the main code of this project below.
+
+https://github.com/FelisAstra/INHA_OSAP_002_Honeycomb
+
+
+# Getting started
+
+## Docker
 ```
 docker load -i set.tar   //set.tar 파일로부터 이미지 로드
 docker run -it set  // 로드한 이미지 실행
